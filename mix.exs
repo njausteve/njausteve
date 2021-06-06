@@ -20,6 +20,7 @@ defmodule Njausteve.MixProject do
   def application do
     [
       mod: {Njausteve.Application, []},
+      applications: [:ex_machina],
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -47,9 +48,10 @@ defmodule Njausteve.MixProject do
       {:plug_cowboy, "~> 2.0"},
       # Testing liblaries
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
+      {:ex_machina, "~> 2.7.0", only: :test},
       #code quality
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
-    ]
+
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
