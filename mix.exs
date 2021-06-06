@@ -49,9 +49,9 @@ defmodule Njausteve.MixProject do
       # Testing liblaries
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
-      #code quality
+      # code quality
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
-
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
