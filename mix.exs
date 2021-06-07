@@ -20,7 +20,6 @@ defmodule Njausteve.MixProject do
   def application do
     [
       mod: {Njausteve.Application, []},
-      applications: [:ex_machina],
       extra_applications: [:logger, :runtime_tools]
     ]
   end

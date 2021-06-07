@@ -26,7 +26,7 @@
   <%= error_tag f, :summary %>
 
   <%= label f, :publishing_status %>
-  <%= text_input f, :publishing_status %>
+  <%= select f, :publishing_status, @publishing_status_options %>
   <%= error_tag f, :publishing_status %>
 
   <%= label f, :views %>

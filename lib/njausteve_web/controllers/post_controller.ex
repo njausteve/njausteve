@@ -11,7 +11,9 @@ defmodule NjausteveWeb.PostController do
 
   def new(conn, _params) do
     changeset = Posts.change_post(%Post{})
-    render(conn, "new.html", changeset: changeset)
+    publishing_status_options = Posts.publish_status_to_dropdown()
+
+    render(conn, "new.html", changeset: changeset, publishing_status_options: publishing_status_options)
   end
 
   def create(conn, %{"post" => post_params}) do
@@ -33,8 +35,10 @@ defmodule NjausteveWeb.PostController do
 
   def edit(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
+    publishing_status_options = Posts.publish_status_to_dropdown()
+
     changeset = Posts.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset)
+    render(conn, "edit.html", post: post, changeset: changeset, publishing_status_options: publishing_status_options)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
