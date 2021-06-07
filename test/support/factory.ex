@@ -4,5 +4,4 @@ defmodule MyApp.Factory do
 
   # without Ecto
   use ExMachina
-
 end
