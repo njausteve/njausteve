@@ -18,7 +18,9 @@ defmodule Njausteve.Posts do
 
   """
   def list_posts do
-    Repo.all(Post)
+    Post
+    |> preload([:comments])
+    |> Repo.all()
   end
 
   @doc """
@@ -35,7 +37,11 @@ defmodule Njausteve.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id) do
+    Post
+    |> Repo.get!(id)
+    |> preload([:comments])
+  end
 
   @doc """
   Creates a post.
