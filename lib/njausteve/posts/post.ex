@@ -23,6 +23,8 @@ defmodule Njausteve.Posts.Post do
     field :title, :string
     field :views, :integer
 
+    has_many :comments, Comment
+
     timestamps()
   end
 
