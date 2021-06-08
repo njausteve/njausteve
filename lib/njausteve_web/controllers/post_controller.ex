@@ -13,10 +13,15 @@ defmodule NjausteveWeb.PostController do
     changeset = Posts.change_post(%Post{})
     publishing_status_options = Posts.publish_status_to_dropdown()
 
-    render(conn, "new.html", changeset: changeset, publishing_status_options: publishing_status_options)
+    render(conn, "new.html",
+      changeset: changeset,
+      publishing_status_options: publishing_status_options
+    )
   end
 
   def create(conn, %{"post" => post_params}) do
+    publishing_status_options = Posts.publish_status_to_dropdown()
+
     case Posts.create_post(post_params) do
       {:ok, post} ->
         conn
@@ -24,7 +29,10 @@ defmodule NjausteveWeb.PostController do
         |> redirect(to: Routes.post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html",
+          changeset: changeset,
+          publishing_status_options: publishing_status_options
+        )
     end
   end
 
@@ -38,11 +46,17 @@ defmodule NjausteveWeb.PostController do
     publishing_status_options = Posts.publish_status_to_dropdown()
 
     changeset = Posts.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset, publishing_status_options: publishing_status_options)
+
+    render(conn, "edit.html",
+      post: post,
+      changeset: changeset,
+      publishing_status_options: publishing_status_options
+    )
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
     post = Posts.get_post!(id)
+    publishing_status_options = Posts.publish_status_to_dropdown()
 
     case Posts.update_post(post, post_params) do
       {:ok, post} ->
@@ -51,7 +65,11 @@ defmodule NjausteveWeb.PostController do
         |> redirect(to: Routes.post_path(conn, :show, post))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", post: post, changeset: changeset)
+        render(conn, "edit.html",
+          post: post,
+          changeset: changeset,
+          publishing_status_options: publishing_status_options
+        )
     end
   end
 

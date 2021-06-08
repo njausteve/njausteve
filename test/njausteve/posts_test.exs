@@ -1,15 +1,16 @@
 defmodule Njausteve.PostsTest do
+  @moduledoc false
+
   use Njausteve.DataCase
 
   alias Njausteve.Posts
+  alias Njausteve.Posts.Post
 
   describe "posts" do
-    alias Njausteve.Posts.Post
-
     @valid_attrs %{
       body: "some body",
       meta_title: "some meta_title",
-      publishing_status: "some publishing_status",
+      publishing_status: "pre-production",
       slug: "some slug",
       summary: "some summary",
       title: "some title",
@@ -18,7 +19,7 @@ defmodule Njausteve.PostsTest do
     @update_attrs %{
       body: "some updated body",
       meta_title: "some updated meta_title",
-      publishing_status: "some updated publishing_status",
+      publishing_status: "pre-production",
       slug: "some updated slug",
       summary: "some updated summary",
       title: "some updated title",
@@ -57,7 +58,7 @@ defmodule Njausteve.PostsTest do
       assert {:ok, %Post{} = post} = Posts.create_post(@valid_attrs)
       assert post.body == "some body"
       assert post.meta_title == "some meta_title"
-      assert post.publishing_status == "some publishing_status"
+      assert post.publishing_status == "pre-production"
       assert post.slug == "some slug"
       assert post.summary == "some summary"
       assert post.title == "some title"
@@ -73,7 +74,7 @@ defmodule Njausteve.PostsTest do
       assert {:ok, %Post{} = post} = Posts.update_post(post, @update_attrs)
       assert post.body == "some updated body"
       assert post.meta_title == "some updated meta_title"
-      assert post.publishing_status == "some updated publishing_status"
+      assert post.publishing_status == "pre-production"
       assert post.slug == "some updated slug"
       assert post.summary == "some updated summary"
       assert post.title == "some updated title"

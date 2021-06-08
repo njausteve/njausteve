@@ -1,4 +1,6 @@
 defmodule NjausteveWeb.PostControllerTest do
+  @moduledoc false
+
   use NjausteveWeb.ConnCase
 
   alias Njausteve.Posts
@@ -6,7 +8,7 @@ defmodule NjausteveWeb.PostControllerTest do
   @create_attrs %{
     body: "some body",
     meta_title: "some meta_title",
-    publishing_status: "some publishing_status",
+    publishing_status: "pre-production",
     slug: "some slug",
     summary: "some summary",
     title: "some title",
@@ -15,7 +17,7 @@ defmodule NjausteveWeb.PostControllerTest do
   @update_attrs %{
     body: "some updated body",
     meta_title: "some updated meta_title",
-    publishing_status: "some updated publishing_status",
+    publishing_status: "pre-production",
     slug: "some updated slug",
     summary: "some updated summary",
     title: "some updated title",

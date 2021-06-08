@@ -1,7 +1,9 @@
-defmodule MyApp.Factory do
+defmodule Njausteve.Factory do
+  @moduledoc false
+
   # with Ecto
-  use ExMachina.Ecto, repo: MyApp.Repo
+  use ExMachina.Ecto, repo: Njausteve.Repo
 
   # without Ecto
-  use ExMachina
+  # use ExMachina
 end

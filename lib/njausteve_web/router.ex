@@ -19,6 +19,7 @@ defmodule NjausteveWeb.Router do
     get "/", PageController, :index
 
     resources "/posts", PostController
+    resources "/authors", AuthorController
   end
 
   # Other scopes may use custom stacks.

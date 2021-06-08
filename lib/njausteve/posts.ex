@@ -19,7 +19,6 @@ defmodule Njausteve.Posts do
   """
   def list_posts do
     Post
-    |> preload([:comments])
     |> Repo.all()
   end
 
@@ -40,7 +39,6 @@ defmodule Njausteve.Posts do
   def get_post!(id) do
     Post
     |> Repo.get!(id)
-    |> preload([:comments])
   end
 
   @doc """
@@ -107,7 +105,6 @@ defmodule Njausteve.Posts do
   def change_post(%Post{} = post, attrs \\ %{}) do
     Post.changeset(post, attrs)
   end
-
 
   @doc """
   Returns Post publishing status to a dropdown list
