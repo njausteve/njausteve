@@ -1,6 +1,12 @@
 defmodule Njausteve.Posts.Post do
+  @moduledoc """
+  Post module.
+  """
   use Ecto.Schema
   import Ecto.Changeset
+
+  alias Njausteve.Authors.Author
+  alias Njausteve.Comments.Comment
 
   @publishing_status [
     {"Unpublished", "unpublished"},
@@ -24,6 +30,7 @@ defmodule Njausteve.Posts.Post do
     field :views, :integer
 
     has_many :comments, Comment
+    belongs_to :author, Author
 
     timestamps()
   end
@@ -33,6 +40,11 @@ defmodule Njausteve.Posts.Post do
     post
     |> cast(attrs, [:title, :slug, :meta_title, :body, :summary, :publishing_status, :views])
     |> validate_required([:title, :slug, :meta_title, :body, :summary, :publishing_status, :views])
-    |> validate_inclusion(:publishing_status, Keyword.values(@publishing_status))
+    |> validate_inclusion(:publishing_status, [
+      "unpublished",
+      "pre-production",
+      "post-production",
+      "published"
+    ])
   end
 end
