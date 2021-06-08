@@ -30,7 +30,7 @@ defmodule Njausteve.Posts.Post do
     field :views, :integer
 
     has_many :comments, Comment
-    belongs_to :authors, Author
+    belongs_to :author, Author
 
     timestamps()
   end
