@@ -7,6 +7,7 @@ defmodule Njausteve.Posts.Post do
 
   alias Njausteve.Authors.Author
   alias Njausteve.Comments.Comment
+  alias Njausteve.Tags.Tag
 
   @publishing_status [
     {"Unpublished", "unpublished"},
@@ -27,9 +28,10 @@ defmodule Njausteve.Posts.Post do
     field :slug, :string
     field :summary, :string
     field :title, :string
-    field :views, :integer
+    field :views, :integer, default: 1
 
     has_many :comments, Comment
+    has_many :tags, Tag
     belongs_to :author, Author
 
     timestamps()
@@ -39,7 +41,7 @@ defmodule Njausteve.Posts.Post do
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:title, :slug, :meta_title, :body, :summary, :publishing_status, :views])
-    |> validate_required([:title, :slug, :meta_title, :body, :summary, :publishing_status, :views])
+    |> validate_required([:title, :slug, :meta_title, :body, :summary, :publishing_status])
     |> validate_inclusion(:publishing_status, [
       "unpublished",
       "pre-production",

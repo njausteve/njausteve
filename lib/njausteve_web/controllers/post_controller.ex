@@ -3,6 +3,7 @@ defmodule NjausteveWeb.PostController do
 
   alias Njausteve.Posts
   alias Njausteve.Posts.Post
+  alias Njausteve.Tags
 
   def index(conn, _params) do
     posts = Posts.list_posts()
