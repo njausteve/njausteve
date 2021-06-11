@@ -20,6 +20,7 @@ defmodule NjausteveWeb.Router do
 
     resources "/posts", PostController
     resources "/authors", AuthorController
+    resources "/tags", TagController
   end
 
   # Other scopes may use custom stacks.
