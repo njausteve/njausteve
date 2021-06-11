@@ -9,7 +9,7 @@ defmodule Njausteve.Tags.Tag do
   schema "tags" do
     field :name, :string
 
-    belongs_to :post, Post
+    many_to_many :posts, Post, join_through: "posts_tags"
 
     timestamps()
   end
