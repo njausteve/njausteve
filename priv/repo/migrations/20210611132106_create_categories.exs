@@ -7,6 +7,5 @@ defmodule Njausteve.Repo.Migrations.CreateCategories do
 
       timestamps()
     end
-
   end
 end

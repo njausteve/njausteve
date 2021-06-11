@@ -10,6 +10,7 @@ defmodule Njausteve.Categories.Category do
     field :name, :string
 
     many_to_many :posts, Post, join_through: "posts_categories"
+
     timestamps()
   end
 
