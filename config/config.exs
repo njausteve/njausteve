@@ -20,7 +20,8 @@ config :njausteve, NjausteveWeb.Endpoint,
 
 config :njausteve, :pow,
   user: Njausteve.Users.User,
-  repo: Njausteve.Repo
+  repo: Njausteve.Repo,
+  web_module: NjausteveWeb
 
 # Configures Elixir's Logger
 config :logger, :console,
