@@ -50,5 +50,6 @@ defmodule NjausteveWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug Pow.Plug.Session, otp_app: :njausteve
   plug NjausteveWeb.Router
 end
