@@ -8,6 +8,7 @@ defmodule Njausteve.Posts.Post do
   alias Njausteve.Authors.Author
   alias Njausteve.Comments.Comment
   alias Njausteve.Tags.Tag
+  alias Njausteve.Categories.Category
 
   @publishing_status [
     {"Unpublished", "unpublished"},
@@ -33,6 +34,7 @@ defmodule Njausteve.Posts.Post do
     has_many :comments, Comment
     has_many :tags, Tag
     belongs_to :author, Author
+    many_to_many :categories, Category, join_through: "posts_categories"
 
     timestamps()
   end
