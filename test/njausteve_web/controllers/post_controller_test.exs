@@ -7,7 +7,7 @@ defmodule NjausteveWeb.PostControllerTest do
   alias Njausteve.Users.User
 
   setup %{conn: conn} do
-    user = %User{email: "test@example.com"}
+    user = %User{email: "test@example.com", role: "admin"}
     conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
 
     {:ok, conn: conn}

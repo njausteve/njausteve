@@ -1,11 +1,12 @@
 defmodule NjausteveWeb.CategoryControllerTest do
+  @moduledoc false
   use NjausteveWeb.ConnCase
 
   alias Njausteve.Categories
   alias Njausteve.Users.User
 
   setup %{conn: conn} do
-    user = %User{email: "test@example.com"}
+    user = %User{email: "test@example.com", role: "admin"}
     conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
 
     {:ok, conn: conn}
@@ -36,7 +37,8 @@ defmodule NjausteveWeb.CategoryControllerTest do
 
   describe "create category" do
     test "redirects to show when data is valid", %{conn: authed_conn} do
-      conn = post(authed_conn, Routes.category_path(authed_conn, :create), category: @create_attrs)
+      conn =
+        post(authed_conn, Routes.category_path(authed_conn, :create), category: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.category_path(conn, :show, id)
@@ -46,7 +48,9 @@ defmodule NjausteveWeb.CategoryControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: authed_conn} do
-      conn = post(authed_conn, Routes.category_path(authed_conn, :create), category: @invalid_attrs)
+      conn =
+        post(authed_conn, Routes.category_path(authed_conn, :create), category: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "New Category"
     end
   end
@@ -64,7 +68,11 @@ defmodule NjausteveWeb.CategoryControllerTest do
     setup [:create_category]
 
     test "redirects when data is valid", %{conn: authed_conn, category: category} do
-      conn = put(authed_conn, Routes.category_path(authed_conn, :update, category), category: @update_attrs)
+      conn =
+        put(authed_conn, Routes.category_path(authed_conn, :update, category),
+          category: @update_attrs
+        )
+
       assert redirected_to(conn) == Routes.category_path(conn, :show, category)
 
       conn = get(authed_conn, Routes.category_path(authed_conn, :show, category))
@@ -72,7 +80,11 @@ defmodule NjausteveWeb.CategoryControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: authed_conn, category: category} do
-      conn = put(authed_conn, Routes.category_path(authed_conn, :update, category), category: @invalid_attrs)
+      conn =
+        put(authed_conn, Routes.category_path(authed_conn, :update, category),
+          category: @invalid_attrs
+        )
+
       assert html_response(conn, 200) =~ "Edit Category"
     end
   end

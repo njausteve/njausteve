@@ -1,8 +1,16 @@
 defmodule NjausteveWeb.TagControllerTest do
+  @moduledoc false
   use NjausteveWeb.ConnCase
 
   alias Njausteve.Tags
   alias Njausteve.Users.User
+
+  setup %{conn: conn} do
+    user = %User{email: "test@example.com", role: "admin"}
+    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
+
+    {:ok, conn: conn}
+  end
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}
@@ -13,12 +21,6 @@ defmodule NjausteveWeb.TagControllerTest do
     tag
   end
 
-  setup %{conn: conn} do
-    user = %User{email: "test@example.com"}
-    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
-
-    {:ok, conn: conn}
-  end
 
   describe "index" do
     test "lists all tags", %{conn: authed_conn} do
@@ -40,7 +42,6 @@ defmodule NjausteveWeb.TagControllerTest do
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.tag_path(conn, :show, id)
-
 
       conn = get(authed_conn, Routes.tag_path(authed_conn, :show, id))
 

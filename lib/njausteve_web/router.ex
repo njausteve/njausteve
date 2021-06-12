@@ -17,6 +17,10 @@ defmodule NjausteveWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug NjausteveWeb.EnsureRolePlug, :admin
+  end
+
   pipeline :protected do
     plug Pow.Plug.RequireAuthenticated,
       error_handler: Pow.Phoenix.PlugErrorHandler
@@ -31,7 +35,7 @@ defmodule NjausteveWeb.Router do
 
   # Routes behind login
   scope "/admin", NjausteveWeb do
-    pipe_through [:browser, :protected]
+    pipe_through [:browser, :protected, :admin]
 
     resources "/posts", PostController
     resources "/authors", AuthorController

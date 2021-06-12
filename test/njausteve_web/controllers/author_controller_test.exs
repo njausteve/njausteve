@@ -1,11 +1,12 @@
 defmodule NjausteveWeb.AuthorControllerTest do
+  @moduledoc false
   use NjausteveWeb.ConnCase
 
   alias Njausteve.Authors
   alias Njausteve.Users.User
 
   setup %{conn: conn} do
-    user = %User{email: "test@example.com"}
+    user = %User{email: "test@example.com", role: "admin"}
     conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
 
     {:ok, conn: conn}
@@ -68,7 +69,9 @@ defmodule NjausteveWeb.AuthorControllerTest do
     setup [:create_author]
 
     test "redirects when data is valid", %{conn: authed_conn, author: author} do
-      conn = put(authed_conn, Routes.author_path(authed_conn, :update, author), author: @update_attrs)
+      conn =
+        put(authed_conn, Routes.author_path(authed_conn, :update, author), author: @update_attrs)
+
       assert redirected_to(conn) == Routes.author_path(conn, :show, author)
 
       conn = get(authed_conn, Routes.author_path(authed_conn, :show, author))
@@ -76,7 +79,9 @@ defmodule NjausteveWeb.AuthorControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: authed_conn, author: author} do
-      conn = put(authed_conn, Routes.author_path(authed_conn, :update, author), author: @invalid_attrs)
+      conn =
+        put(authed_conn, Routes.author_path(authed_conn, :update, author), author: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Author"
     end
   end
