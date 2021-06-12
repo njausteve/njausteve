@@ -2,7 +2,7 @@ defmodule NjausteveWeb.EnsureRolePlugTest do
   @moduledoc false
   use NjausteveWeb.ConnCase
 
- alias NjausteveWeb.EnsureRolePlug
+  alias NjausteveWeb.EnsureRolePlug
 
   @opts ~w(admin)a
   @user %{id: 1, role: "user"}

@@ -21,7 +21,6 @@ defmodule NjausteveWeb.TagControllerTest do
     tag
   end
 
-
   describe "index" do
     test "lists all tags", %{conn: authed_conn} do
       conn = get(authed_conn, Routes.tag_path(authed_conn, :index))

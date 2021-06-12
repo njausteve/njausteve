@@ -34,4 +34,13 @@ defmodule NjausteveWeb.UsersTest do
     assert {:ok, admin} = Users.create_admin(%{@valid_params | email: "test2@example.com"})
     assert Users.is_admin?(admin)
   end
+
+  test "get_user/1" do
+    assert {:error, _message} = Users.get_user(email: "")
+
+    assert {:ok, inserted_user} = Repo.insert(User.changeset(%User{}, @valid_params))
+    assert {:ok, fetched_user} = Users.get_user(email: inserted_user.email)
+
+    assert fetched_user == inserted_user
+  end
 end
