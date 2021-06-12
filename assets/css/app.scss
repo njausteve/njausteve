@@ -3,3 +3,8 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+/* Alpine js reset */
+[x-cloak] {
+  display: none !important;
+}
