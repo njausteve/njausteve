@@ -2,6 +2,9 @@ defmodule NjausteveWeb.Router do
   use NjausteveWeb, :router
   use Pow.Phoenix.Router
 
+  use Pow.Extension.Phoenix.Router,
+    extensions: [PowResetPassword, PowEmailConfirmation]
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -23,6 +26,7 @@ defmodule NjausteveWeb.Router do
     pipe_through :browser
 
     pow_routes()
+    pow_extension_routes()
   end
 
   # Routes behind login

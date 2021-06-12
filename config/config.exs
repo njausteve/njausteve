@@ -21,7 +21,9 @@ config :njausteve, NjausteveWeb.Endpoint,
 config :njausteve, :pow,
   user: Njausteve.Users.User,
   repo: Njausteve.Repo,
-  web_module: NjausteveWeb
+  web_module: NjausteveWeb,
+  extensions: [PowResetPassword, PowEmailConfirmation],
+  cache_store_backend: Pow.Store.Backend.MnesiaCache
 
 # Configures Elixir's Logger
 config :logger, :console,

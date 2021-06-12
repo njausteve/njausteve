@@ -14,9 +14,11 @@ defmodule Njausteve.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Njausteve.PubSub},
       # Start the Endpoint (http/https)
-      NjausteveWeb.Endpoint
+      NjausteveWeb.Endpoint,
       # Start a worker by calling: Njausteve.Worker.start_link(arg)
       # {Njausteve.Worker, arg}
+      # persistent cache store for pow
+      Pow.Store.Backend.MnesiaCache
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
