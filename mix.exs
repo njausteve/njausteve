@@ -20,7 +20,7 @@ defmodule Njausteve.MixProject do
   def application do
     [
       mod: {Njausteve.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :mnesia]
     ]
   end
 
@@ -49,7 +49,10 @@ defmodule Njausteve.MixProject do
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
       # code quality
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+
+      # Authentication
+      {:pow, "~> 1.0.24"}
     ]
   end
 

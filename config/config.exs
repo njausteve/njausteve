@@ -18,6 +18,13 @@ config :njausteve, NjausteveWeb.Endpoint,
   pubsub_server: Njausteve.PubSub,
   live_view: [signing_salt: "uoBMdOyv"]
 
+config :njausteve, :pow,
+  user: Njausteve.Users.User,
+  repo: Njausteve.Repo,
+  web_module: NjausteveWeb,
+  extensions: [PowResetPassword, PowEmailConfirmation],
+  cache_store_backend: Pow.Store.Backend.MnesiaCache
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

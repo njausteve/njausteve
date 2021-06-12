@@ -1,7 +1,16 @@
 defmodule NjausteveWeb.TagControllerTest do
+  @moduledoc false
   use NjausteveWeb.ConnCase
 
   alias Njausteve.Tags
+  alias Njausteve.Users.User
+
+  setup %{conn: conn} do
+    user = %User{email: "test@example.com", role: "admin"}
+    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
+
+    {:ok, conn: conn}
+  end
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}
@@ -13,32 +22,33 @@ defmodule NjausteveWeb.TagControllerTest do
   end
 
   describe "index" do
-    test "lists all tags", %{conn: conn} do
-      conn = get(conn, Routes.tag_path(conn, :index))
+    test "lists all tags", %{conn: authed_conn} do
+      conn = get(authed_conn, Routes.tag_path(authed_conn, :index))
       assert html_response(conn, 200) =~ "Listing Tags"
     end
   end
 
   describe "new tag" do
-    test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.tag_path(conn, :new))
+    test "renders form", %{conn: authed_conn} do
+      conn = get(authed_conn, Routes.tag_path(authed_conn, :new))
       assert html_response(conn, 200) =~ "New Tag"
     end
   end
 
   describe "create tag" do
-    test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.tag_path(conn, :create), tag: @create_attrs)
+    test "redirects to show when data is valid", %{conn: authed_conn} do
+      conn = post(authed_conn, Routes.tag_path(authed_conn, :create), tag: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.tag_path(conn, :show, id)
 
-      conn = get(conn, Routes.tag_path(conn, :show, id))
+      conn = get(authed_conn, Routes.tag_path(authed_conn, :show, id))
+
       assert html_response(conn, 200) =~ "Show Tag"
     end
 
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.tag_path(conn, :create), tag: @invalid_attrs)
+    test "renders errors when data is invalid", %{conn: authed_conn} do
+      conn = post(authed_conn, Routes.tag_path(authed_conn, :create), tag: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Tag"
     end
   end
@@ -46,8 +56,8 @@ defmodule NjausteveWeb.TagControllerTest do
   describe "edit tag" do
     setup [:create_tag]
 
-    test "renders form for editing chosen tag", %{conn: conn, tag: tag} do
-      conn = get(conn, Routes.tag_path(conn, :edit, tag))
+    test "renders form for editing chosen tag", %{conn: authed_conn, tag: tag} do
+      conn = get(authed_conn, Routes.tag_path(authed_conn, :edit, tag))
       assert html_response(conn, 200) =~ "Edit Tag"
     end
   end
@@ -55,16 +65,16 @@ defmodule NjausteveWeb.TagControllerTest do
   describe "update tag" do
     setup [:create_tag]
 
-    test "redirects when data is valid", %{conn: conn, tag: tag} do
-      conn = put(conn, Routes.tag_path(conn, :update, tag), tag: @update_attrs)
+    test "redirects when data is valid", %{conn: authed_conn, tag: tag} do
+      conn = put(authed_conn, Routes.tag_path(authed_conn, :update, tag), tag: @update_attrs)
       assert redirected_to(conn) == Routes.tag_path(conn, :show, tag)
 
-      conn = get(conn, Routes.tag_path(conn, :show, tag))
+      conn = get(authed_conn, Routes.tag_path(authed_conn, :show, tag))
       assert html_response(conn, 200) =~ "some updated name"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, tag: tag} do
-      conn = put(conn, Routes.tag_path(conn, :update, tag), tag: @invalid_attrs)
+    test "renders errors when data is invalid", %{conn: authed_conn, tag: tag} do
+      conn = put(authed_conn, Routes.tag_path(authed_conn, :update, tag), tag: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Tag"
     end
   end
@@ -72,12 +82,12 @@ defmodule NjausteveWeb.TagControllerTest do
   describe "delete tag" do
     setup [:create_tag]
 
-    test "deletes chosen tag", %{conn: conn, tag: tag} do
-      conn = delete(conn, Routes.tag_path(conn, :delete, tag))
+    test "deletes chosen tag", %{conn: authed_conn, tag: tag} do
+      conn = delete(authed_conn, Routes.tag_path(authed_conn, :delete, tag))
       assert redirected_to(conn) == Routes.tag_path(conn, :index)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.tag_path(conn, :show, tag))
+        get(authed_conn, Routes.tag_path(authed_conn, :show, tag))
       end
     end
   end

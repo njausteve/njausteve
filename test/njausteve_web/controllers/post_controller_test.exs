@@ -4,6 +4,14 @@ defmodule NjausteveWeb.PostControllerTest do
   use NjausteveWeb.ConnCase
 
   alias Njausteve.Posts
+  alias Njausteve.Users.User
+
+  setup %{conn: conn} do
+    user = %User{email: "test@example.com", role: "admin"}
+    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
+
+    {:ok, conn: conn}
+  end
 
   @create_attrs %{
     body: "some body",
@@ -39,32 +47,32 @@ defmodule NjausteveWeb.PostControllerTest do
   end
 
   describe "index" do
-    test "lists all posts", %{conn: conn} do
-      conn = get(conn, Routes.post_path(conn, :index))
+    test "lists all posts", %{conn: authed_conn} do
+      conn = get(authed_conn, Routes.post_path(authed_conn, :index))
       assert html_response(conn, 200) =~ "Listing Posts"
     end
   end
 
   describe "new post" do
-    test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.post_path(conn, :new))
+    test "renders form", %{conn: authed_conn} do
+      conn = get(authed_conn, Routes.post_path(authed_conn, :new))
       assert html_response(conn, 200) =~ "New Post"
     end
   end
 
   describe "create post" do
-    test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.post_path(conn, :create), post: @create_attrs)
+    test "redirects to show when data is valid", %{conn: authed_conn} do
+      conn = post(authed_conn, Routes.post_path(authed_conn, :create), post: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.post_path(conn, :show, id)
 
-      conn = get(conn, Routes.post_path(conn, :show, id))
+      conn = get(authed_conn, Routes.post_path(authed_conn, :show, id))
       assert html_response(conn, 200) =~ "Show Post"
     end
 
-    test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.post_path(conn, :create), post: @invalid_attrs)
+    test "renders errors when data is invalid", %{conn: authed_conn} do
+      conn = post(authed_conn, Routes.post_path(authed_conn, :create), post: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Post"
     end
   end
@@ -72,8 +80,8 @@ defmodule NjausteveWeb.PostControllerTest do
   describe "edit post" do
     setup [:create_post]
 
-    test "renders form for editing chosen post", %{conn: conn, post: post} do
-      conn = get(conn, Routes.post_path(conn, :edit, post))
+    test "renders form for editing chosen post", %{conn: authed_conn, post: post} do
+      conn = get(authed_conn, Routes.post_path(authed_conn, :edit, post))
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
@@ -81,16 +89,16 @@ defmodule NjausteveWeb.PostControllerTest do
   describe "update post" do
     setup [:create_post]
 
-    test "redirects when data is valid", %{conn: conn, post: post} do
-      conn = put(conn, Routes.post_path(conn, :update, post), post: @update_attrs)
+    test "redirects when data is valid", %{conn: authed_conn, post: post} do
+      conn = put(authed_conn, Routes.post_path(authed_conn, :update, post), post: @update_attrs)
       assert redirected_to(conn) == Routes.post_path(conn, :show, post)
 
-      conn = get(conn, Routes.post_path(conn, :show, post))
+      conn = get(authed_conn, Routes.post_path(authed_conn, :show, post))
       assert html_response(conn, 200) =~ "some updated body"
     end
 
-    test "renders errors when data is invalid", %{conn: conn, post: post} do
-      conn = put(conn, Routes.post_path(conn, :update, post), post: @invalid_attrs)
+    test "renders errors when data is invalid", %{conn: authed_conn, post: post} do
+      conn = put(authed_conn, Routes.post_path(authed_conn, :update, post), post: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Post"
     end
   end
@@ -98,12 +106,12 @@ defmodule NjausteveWeb.PostControllerTest do
   describe "delete post" do
     setup [:create_post]
 
-    test "deletes chosen post", %{conn: conn, post: post} do
-      conn = delete(conn, Routes.post_path(conn, :delete, post))
+    test "deletes chosen post", %{conn: authed_conn, post: post} do
+      conn = delete(authed_conn, Routes.post_path(authed_conn, :delete, post))
       assert redirected_to(conn) == Routes.post_path(conn, :index)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.post_path(conn, :show, post))
+        get(authed_conn, Routes.post_path(authed_conn, :show, post))
       end
     end
   end
