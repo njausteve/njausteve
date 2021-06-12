@@ -2,8 +2,22 @@
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
 import "../css/app.scss"
+import 'alpinejs';
 
-// webpack automatically bundles all modules in your
+// uncomment when liveview is integrated
+// const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+// const liveSocket = new LiveSocket("/live", Socket, {
+//   dom: {
+//     onBeforeElUpdated(from, to) {
+//       if (from.__x) {
+//         window.Alpine.clone(from.__x, to);
+//       }
+//     },
+//   },
+//   params: {_csrf_token: csrfToken}
+// });
+
+// // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
 // in "webpack.config.js".
 //

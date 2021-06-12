@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <section class="container">
+      <section class="container mx-auto">
         <nav role="navigation">
           <ul>
             <li>
