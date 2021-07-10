@@ -113,7 +113,7 @@ defmodule Njausteve.Tags do
   """
 
   @spec to_dropdown() :: list({String.t(), integer})
-  def to_dropdown() do
+  def to_dropdown do
     Repo.all(from(t in Tag, select: {t.name, t.id}, order_by: t.name))
   end
 end
