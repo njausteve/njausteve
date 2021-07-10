@@ -2,9 +2,9 @@ name: Elixir CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -37,6 +37,7 @@ jobs:
         run: mix deps.get
       - name: Run tests
         run: mix test
+
   publish:
     runs-on: ubuntu-latest
     needs: test
