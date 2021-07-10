@@ -1,6 +1,6 @@
 defmodule Njausteve.Release do
   @moduledoc """
-    Release task to xecute custom commands required to set up the production environment
+    Release task to execute custom commands required to set up the production environment
     Since we don't have Mix, a build tool, inside releases, which are a production artifact,
     we need to bring said commands directly into the release
   """
