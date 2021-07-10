@@ -6,7 +6,7 @@ networks:
     attachable: true # Needed in order to run custom commands in the container
 
 services:
-  njausteve_db:
+  db:
     image: postgres:11.10-alpine
     env_file:
       - config/docker.env
@@ -17,17 +17,15 @@ services:
       - "5432:5432"
     networks:
       - webnet
-  njausteve_app:
-    build:
-      # Here we define that it should build from the current directory
-      context: .
+  app:
+    image: njausteve/njausteve:0.1.0
     env_file:
       - docker.env
     ports:
       - "80:4000"
     restart: always
     depends_on:
-      - njausteve_db
+      - db
     deploy:
       replicas: 1
       restart_policy:
