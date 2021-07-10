@@ -216,4 +216,5 @@ jobs:
           host: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           KEY: ${{ secrets.SSHKEY }}
+          passphrase: ${{ secrets.PASSPHRASE }}
           script: docker service update --image njausteve/njausteve:${{ github.sha }} njausteve_app
