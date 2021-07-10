@@ -163,6 +163,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: [unit_tests, static_code_analysis]
+    strategy:
+      matrix:
+        elixir: [1.11.3]
+        otp: [23.2.3]
 
     steps:
       - name: Checkout
