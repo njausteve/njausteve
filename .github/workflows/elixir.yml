@@ -7,9 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
-    name: Build and test
+  test:
+    name: test
     runs-on: ubuntu-latest
 
     services:
@@ -34,13 +33,38 @@ jobs:
       with:
         elixir-version: '1.11.3' # Define the elixir version [required]
         otp-version: '23.2.2' # Define the OTP version [required]
-    - name: Restore dependencies cache
-      uses: actions/cache@v2
-      with:
-        path: deps
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-        restore-keys: ${{ runner.os }}-mix-
+
     - name: Install dependencies
       run: mix deps.get
     - name: Run tests
       run: mix test
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Log in to Docker Hub
+      # - if: github.event_name != 'pull_request'
+      - uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: njausteve/njausteve
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          name: njausteve/njausteve:${{ github.sha }}
+          # push: ${{ github.event_name != 'pull_request' }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
