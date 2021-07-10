@@ -44,10 +44,11 @@ jobs:
 
     steps:
       - name: Check out the repo
+        if: ${{ github.event_name != 'pull_request' }}
         uses: actions/checkout@v2
 
       - name: Publish to DockerHub
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: njausteve/njausteve:${{ github.sha }}
@@ -60,8 +61,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        if: ${{ github.event_name != 'pull_request' }}
       - name: Executing remote command
-        if: github.event_name != 'pull_request'
+        if: ${{ github.event_name != 'pull_request' }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
