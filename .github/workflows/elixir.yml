@@ -43,13 +43,28 @@ jobs:
     needs: test
 
     steps:
-    - name: Check out the repo
-      uses: actions/checkout@v2
+      - name: Check out the repo
+        uses: actions/checkout@v2
 
-    - name: Publish to DockerHub
-  # - if: github.event_name != 'pull_request'
-      uses: elgohr/Publish-Docker-Github-Action@master
-      with:
-        name: njausteve/njausteve:${{ github.sha }}
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Publish to DockerHub
+      - if: github.event_name != 'pull_request'
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: njausteve/njausteve:${{ github.sha }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [test, publish]
+
+    steps:
+      - uses: actions/checkout@v2
+      - if: github.event_name != 'pull_request'
+      - name: Executing remote command
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          KEY: ${{ secrets.SSHKEY }}
+          script: docker service update --image njausteve/njausteve:${{ github.sha }} njausteve_app
