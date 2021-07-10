@@ -6,9 +6,9 @@ defmodule Njausteve.Posts.Post do
   import Ecto.Changeset
 
   alias Njausteve.Authors.Author
+  alias Njausteve.Categories.Category
   alias Njausteve.Comments.Comment
   alias Njausteve.Tags.Tag
-  alias Njausteve.Categories.Category
 
   @publishing_status [
     {"Unpublished", "unpublished"},

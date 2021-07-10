@@ -115,7 +115,7 @@ defmodule Njausteve.Posts do
       %Ecto.publish_status_to_dropdown()
 
   """
-  def publish_status_to_dropdown() do
+  def publish_status_to_dropdown do
     Post.publishing_status()
   end
 end

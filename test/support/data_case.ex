@@ -15,6 +15,7 @@ defmodule Njausteve.DataCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL.Sandbox
 
   using do
     quote do
@@ -28,10 +29,10 @@ defmodule Njausteve.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Njausteve.Repo)
+    :ok = Sandbox.checkout(Njausteve.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Njausteve.Repo, {:shared, self()})
+      Sandbox.mode(Njausteve.Repo, {:shared, self()})
     end
 
     :ok

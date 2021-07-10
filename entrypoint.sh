@@ -11,9 +11,7 @@ done
 
 bin="/opt/app/bin/server"
 
-eval "$bin eval \"Njausteve.Release.migrate\""
-
-sh /opt/app/entrypoint.sh
+sh /opt/app/migrate.sh
 
 # start the elixir application
 exec "$bin" "start"

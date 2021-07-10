@@ -10,7 +10,15 @@ defmodule Njausteve.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: dialyzer(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -49,10 +57,22 @@ defmodule Njausteve.MixProject do
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
       # code quality
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:sobelow, "~> 0.8", only: :dev},
+      {:excoveralls, "~> 0.10", only: :test},
 
       # Authentication
       {:pow, "~> 1.0.24"}
+    ]
+  end
+
+  defp dialyzer do
+    [
+      plt_core_path: "priv/plts",
+      plt_add_apps: [:mix, :ex_unit],
+      plt_ignore_apps: [:mnesia],
+      ignore_warnings: ".known_dialyzer_warnings"
     ]
   end
 

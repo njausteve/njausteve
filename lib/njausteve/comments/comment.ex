@@ -4,9 +4,9 @@ defmodule Njausteve.Comments.Comment do
   """
   use Ecto.Schema
   import Ecto.Changeset
-  alias Njausteve.Posts.Post
   alias Njausteve.Authors.Author
   alias Njausteve.Comments.Comment
+  alias Njausteve.Posts.Post
 
   schema "comments" do
     field :approved, :boolean, default: false

@@ -4,8 +4,8 @@ defmodule Njausteve.Authors.Author do
   """
   use Ecto.Schema
   import Ecto.Changeset
-  alias Njausteve.Posts.Post
   alias Njausteve.Comments.Comment
+  alias Njausteve.Posts.Post
 
   schema "authors" do
     field :bio, :string
