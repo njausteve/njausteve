@@ -1,0 +1,18 @@
+# Elixir Artifacts
+/_build/
+/deps/
+/doc/
+/cover/
+/.fetch
+*.ez
+njausteve*.tar
+erl_crash.dump
+
+# Node Artifacts
+npm-debug.log
+/assets/node_modules/
+
+# Irrelevant files
+Dockerfile
+/test/
+/.iex.exs

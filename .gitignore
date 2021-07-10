@@ -35,3 +35,9 @@ npm-debug.log
 
 # Mnesia path
 /Mnesia.nonode@nohost
+
+# secrets
+*.secret.exs
+
+# docker environment secrets
+*.env

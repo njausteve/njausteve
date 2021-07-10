@@ -4,7 +4,7 @@ defmodule Njausteve.MixProject do
   def project do
     [
       app: :njausteve,
-      version: "0.1.0",
+      version: version(),
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -69,5 +69,24 @@ defmodule Njausteve.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
+  end
+
+  # This only accepts MAJOR.MINOR scheme.
+  @semantic_version "0.1"
+
+  # Generates the app version according to the commit hash and timestamps.
+  def version do
+    {{year, month, day}, _time} = :calendar.universal_time()
+    version = @semantic_version
+    env = Mix.env() |> Atom.to_string()
+
+    revision =
+      System.cmd("git", ["rev-parse", "--short", "HEAD"]) |> elem(0) |> String.trim_trailing()
+
+    :io_lib.format(
+      '~s.~4.10.0b~2.10.0b~2.10.0b-~s+~s',
+      [version, year, month, day, env, revision]
+    )
+    |> :erlang.list_to_binary()
   end
 end
