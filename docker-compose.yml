@@ -1,0 +1,39 @@
+version: "3.8"
+
+networks:
+  webnet:
+    driver: overlay
+    attachable: true # Needed in order to run custom commands in the container
+
+services:
+  njausteve_db:
+    image: postgres:11.10-alpine
+    env_file:
+      - config/docker.env
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - webnet
+  njausteve_app:
+    build:
+      # Here we define that it should build from the current directory
+      context: .
+    env_file:
+      - docker.env
+    ports:
+      - "80:4000"
+    restart: always
+    depends_on:
+      - njausteve_db
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - webnet
+
+volumes:
+  pgdata:

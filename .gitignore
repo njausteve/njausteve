@@ -38,3 +38,6 @@ npm-debug.log
 
 # secrets
 *.secret.exs
+
+# docker environment secrets
+*.env

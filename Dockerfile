@@ -3,8 +3,6 @@ FROM elixir:1.11.3-alpine AS build
 # Install build dependencies
 RUN apk add --no-cache build-base npm git python3
 
-RUN node -v
-
 ARG APP_NAME=njausteve
 ARG MIX_ENV=prod
 
@@ -50,6 +48,14 @@ WORKDIR /opt/app
 # Copy release to app container
 COPY --from=build /opt/release .
 
+# Copy entrypoint.sh to app container
+COPY entrypoint.sh .
+
 EXPOSE 4000
 
-CMD ["/opt/app/bin/server", "start"]
+RUN chown -R nobody: /opt/app
+USER nobody
+
+ENV HOME=/opt/app
+
+CMD ["bash", "/opt/app/entrypoint.sh"]
