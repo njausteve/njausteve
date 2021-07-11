@@ -18,7 +18,7 @@ services:
     networks:
       - webnet
   app:
-    image: njausteve/njausteve:ce5f30537153f015b17cc99d032081415cb024c9
+    image: njausteve/njausteve:9d7f707af08e06ed0591759cfc48c84344b2a1e3
     env_file:
       - docker.env
     ports:

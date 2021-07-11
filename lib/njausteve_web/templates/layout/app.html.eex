@@ -22,8 +22,4 @@
       <%= @inner_content %>
     </main>
   </body>
-
-  <style>
-
-  </style>
 </html>

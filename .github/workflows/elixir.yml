@@ -214,7 +214,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          KEY: ${{ secrets.SSHKEY }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSHKEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          script: docker service update --image njausteve/njausteve:${{ github.sha }} njausteve_app
+          script: docker service update --image njausteve/njausteve:${{ github.sha }} njausteve_app --with-registry-auth
