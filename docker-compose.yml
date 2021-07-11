@@ -9,7 +9,7 @@ services:
   db:
     image: postgres:11.10-alpine
     env_file:
-      - config/docker.env
+      - docker.env
     restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -18,7 +18,7 @@ services:
     networks:
       - webnet
   app:
-    image: njausteve/njausteve:0.1.0
+    image: njausteve/njausteve:ce5f30537153f015b17cc99d032081415cb024c9
     env_file:
       - docker.env
     ports:

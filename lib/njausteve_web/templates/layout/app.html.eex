@@ -16,10 +16,14 @@
         </nav>
       </section>
     </header>
-    <main role="main" class="container">
+    <main role="main" class="container px-4 mx-auto max-w-7xl sm:px-6">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
   </body>
+
+  <style>
+
+  </style>
 </html>
