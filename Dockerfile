@@ -35,7 +35,7 @@ RUN mix release \
     && mv /opt/release/bin/${APP_NAME} /opt/release/bin/server
 
 # Prepare release image
-FROM alpine:3.9 AS app
+FROM alpine:3.14 AS app
 
 # Install runtime dependencies
 RUN apk add --update --no-cache bash openssl ncurses-libs postgresql-client
