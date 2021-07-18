@@ -6,6 +6,10 @@ defmodule Njausteve.Application do
   use Application
 
   def start(_type, _args) do
+    # sentry capture all error messages that the Plug
+    # handler might not
+    Logger.add_backend(Sentry.LoggerBackend)
+
     children = [
       # Start the Ecto repository
       Njausteve.Repo,

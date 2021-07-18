@@ -3,6 +3,7 @@
 // its own CSS file.
 import "../css/app.scss"
 import 'alpinejs';
+import './sentry';
 
 // uncomment when liveview is integrated
 // const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");

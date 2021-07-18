@@ -51,9 +51,11 @@ defmodule Njausteve.MixProject do
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      # Testing liblaries
+      {:jason, "~> 1.1"},
+      {:hackney, "~> 1.8"},
+      {:plug_cowboy, "~> 2.3"},
+
+      # Testing libraries
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
       # code quality
@@ -63,7 +65,10 @@ defmodule Njausteve.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
 
       # Authentication
-      {:pow, "~> 1.0.24"}
+      {:pow, "~> 1.0.24"},
+
+      # Monitoring
+      {:sentry, "~> 8.0"}
     ]
   end
 
