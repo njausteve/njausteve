@@ -1,8 +1,16 @@
-/* import tailwindcss. */
 
+@import "./normalize.scss";
+
+/* import tailwindcss. */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@import "./fonts.scss";
+
+body {
+  font-family: Calibre,Arial,sans-serif;
+}
 
 /* Alpine js reset */
 [x-cloak] {
