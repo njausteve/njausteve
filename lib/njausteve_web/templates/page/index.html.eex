@@ -1,0 +1,16 @@
+<div class="container relative w-screen px-4 pt-16 mx-auto overflow-hidden md:pt-20 z-1">
+  <div class="py-16 md:py-20 lg:py-40 md">
+    <p class="text-3xl font-semibold text-white"><%= gettext("Hi there,") %></p>
+    <h1 class="mt-2 font-medium tracking-normal text-white text-7xl md:text-9xl leading-16 sm:mt-4 md:font-semibold"><%= gettext("I'm") %></h1>
+    <h1 class="font-medium tracking-normal text-white text-7xl md:text-9xl md:font-semibold">Stephen Njau</h1>
+    <h3 class="mt-6 text-2xl font-light leading-7 text-white md:text-4xl sm:text-3xl sm:leading-8 md:mt-8"><%= gettext("Fullstack Elixir / Javascript software engineer") %></h3>
+  </div>
+
+  <div class="absolute flex w-100 transform-gpu whitespace-nowrap animate-scrollText top-1/2">
+    <h1 class="font-extrabold text-gray-200 transition-all duration-200 ease-in scale-150 text-14xl whitespace-nowrap md:text-huge opacity-5">Full Stack Developer</h1>
+    <h1 class="font-extrabold text-gray-200 transition-all duration-200 ease-in scale-150 text-14xl whitespace-nowrap md:text-huge opacity-5">Full Stack Developer</h1>
+  </div>
+
+  <img src="/images/yellow.svg" alt="" class="absolute right-0 object-cover object-center w-1/2 top-8 md:top-1"/>
+  </div>
+</div>

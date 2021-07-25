@@ -1,220 +1,233 @@
-<div class="relative" x-data="{ showMenu: false, loadMenuContent: false }">
-  <div x-show="!showMenu"
-        x-transition:enter="transition ease-out duration-700"
-        x-transition:enter-start="opacity-0 transform "
-        x-transition:enter-end="opacity-100 transform "
-        x-transition:leave="transition ease-in duration-700"
-        x-transition:leave-start="opacity-100 transform "
-        x-transition:leave-end="opacity-0 transform "
-       class="p-4 mx-auto max-w-7xl sm:px-6">
-    <div class="flex items-center justify-between overflow-hidden border-gray-100 md:justify-start md:space-x-10">
-      <div :class="{ '-translate-y-12': showMenu }"
-           class="flex items-center transition-all duration-700 ease-in-out transform-gpu">
-        <a href="<%= Routes.page_path(@conn, :index) %>">
-          <span class="sr-only"><%= gettext("Njausteve") %></span>
-          <p class="m-0 text-3xl font-bold text-white md:text-4xl"><%= gettext("Njausteve") %></p>
-        </a>
-      </div>
+<div class="fixed top-0 w-full h-16 shadow-xl md:h-18 lg:h20 bg-woodsmoke z-4">
+  <div class="relative" x-data="{ showMenu: false, loadMenuContent: false }">
+    <div x-show="!showMenu"
+          x-transition:enter="transition ease-out duration-700"
+          x-transition:enter-start="opacity-0 transform "
+          x-transition:enter-end="opacity-100 transform "
+          x-transition:leave="transition ease-in duration-700"
+          x-transition:leave-start="opacity-100 transform "
+          x-transition:leave-end="opacity-0 transform "
+        class="absolute top-0 left-0 right-0 p-4 z-5">
+      <div class="container flex items-center justify-between px-4 mx-auto overflow-hidden border-gray-100 md:justify-start md:space-x-10">
+        <div :class="{ '-translate-y-12': showMenu }"
+            class="flex items-center transition-all duration-700 ease-in-out transform-gpu">
+          <a href="<%= Routes.page_path(@conn, :index) %>">
+            <span class="sr-only"><%= gettext("Njausteve") %></span>
+            <p class="m-0 text-3xl font-bold text-white md:text-4xl"><%= gettext("Njausteve") %></p>
+          </a>
+        </div>
 
-      <nav :class="{ '-translate-y-12': showMenu }"
-           class="hidden space-x-10 transition-all duration-700 ease-in-out md:flex md:justify-end md:flex-1 lg:w-0 transform-gpu">
-        <%= link gettext("About"), to: "/blog", class: "text-xl font-normal text-concrete"%>
-        <%= link gettext("Resume"), to: "/resume", class: "text-xl font-normal text-concrete"%>
-        <%= link gettext("Blog"), to: "/blog", class: "text-xl font-normal text-concrete"%>
-      </nav>
+        <nav :class="{ '-translate-y-12': showMenu }"
+            class="hidden space-x-10 transition-all duration-700 ease-in-out md:flex md:justify-end md:flex-1 lg:w-0 transform-gpu">
+          <%= link gettext("About"), to: "/blog", class: "text-xl font-normal text-concrete"%>
+          <%= link gettext("Resume"), to: "/resume", class: "text-xl font-normal text-concrete"%>
+          <%= link gettext("Blog"), to: "/blog", class: "text-xl font-normal text-concrete"%>
+        </nav>
 
-      <div class="flex">
-        <button x-show="!showMenu"
-                x-transition:enter="transition ease-out duration-700"
-                x-transition:enter-start="opacity-0 transform scale-90"
-                x-transition:enter-end="opacity-100 transform scale-100"
-                x-transition:leave="transition ease-in duration-700"
-                x-transition:leave-start="opacity-100 transform scale-100"
-                x-transition:leave-end="opacity-0 transform scale-90"
-                type="button"
-                class="inline-flex items-center justify-center focus:outline-none group"
-                aria-expanded="false"
-                @click="showMenu = !showMenu; setTimeout(() => loadMenuContent = true, 750)">
-          <span class="sr-only">Open menu</span>
-          <div class="flex flex-col items-end justify-between w-8 h-6 overflow-hidden">
-            <div :class="{ 'translate-x-8': showMenu }"
-                 class="bg-concrete h-0.5 w-9/12 transform-gpu transition-all duration-200 ease-in-out group-hover:w-full"></div>
-            <div :class="{ 'translate-x-10': showMenu }"
-                 class=" bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out group-hover:w-full"></div>
-            <div :class="{ 'translate-x-8': showMenu }"
-                 class="bg-concrete h-0.5 w-10/12 transform-gpu translate-x-8 transition-all duration-700 ease-in-out group-hover:w-full"></div>
-          </div>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <%# ----- Menu ----- %>
-  <div x-show="loadMenuContent"
-        class="p-4 mx-auto overflow-hidden max-w-7xl sm:px-6">
-    <div class="flex items-center justify-between pb-5 overflow-hidden origin-top border-gray-100 md:justify-start md:space-x-10 transform-gpu">
-      <%#  ---- Logo ---- %>
-      <div x-show="loadMenuContent"
-            x-transition:enter="transition ease-out duration-700"
-            x-transition:enter-start="opacity-0 transform -translate-y-6"
-            x-transition:enter-end="opacity-100 transform translate-y-0"
-            x-transition:leave="transition ease-in duration-700"
-            x-transition:leave-start="opacity-100 transform -translate-y-6"
-            x-transition:leave-end="opacity-0 transform -translate-y-12"
-            class="flex items-center transition-all transform-gpu">
-        <a href="<%= Routes.page_path(@conn, :index) %>">
-          <span class="sr-only"><%= gettext("Njausteve") %></span>
-          <p class="m-0 text-3xl font-bold text-white md:text-4xl"><%= gettext("Njausteve") %></p>
-        </a>
-      </div>
-
-      <nav x-show="loadMenuContent"
-           x-transition:enter="transition ease-out duration-700"
-           x-transition:enter-start="opacity-0 transform translate-x-10"
-           x-transition:enter-end="opacity-100 transform translate-x-0"
-           x-transition:leave="transition ease-in duration-700"
-           x-transition:leave-start="opacity-100 transform translate-x-0"
-           x-transition:leave-end="opacity-0 transform translate-x-10"
-           class="space-x-10 transition-all md:flex md:justify-end md:flex-1 lg:w-0 transform-gpu">
-        <%= if Pow.Plug.current_user(@conn) do %>
-          <%= link gettext("Sign out"), to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "text-xl font-normal text-concrete"%>
-        <% else %>
-          <%=link gettext("Sign in"), to: Routes.pow_registration_path(@conn, :new), method: :delete, class: "text-xl font-normal text-concrete" %>
-        <%= end %>
-      </nav>
-
-      <div class="flex">
-        <button x-show="loadMenuContent"
-                x-transition:enter="transition ease-out duration-400"
-                x-transition:enter-start="opacity-0 translate-x-10"
-                x-transition:enter-end="opacity-100 transform translate-x-0"
-                x-transition:leave="transition ease-in duration-400"
-                x-transition:leave-start="opacity-100 transform translate-x-0"
-                x-transition:leave-end="opacity-0 transform translate-x-10"
-                @click="loadMenuContent = !loadMenuContent; setTimeout(() => showMenu = !showMenu, 750)"
-                type="button"
-                class="inline-flex items-center justify-center focus:outline-none group"
-                aria-expanded="false">
-          <span class="sr-only">Open menu</span>
-          <div class="relative flex flex-col items-end justify-center w-8 h-8 overflow-hidden">
-            <div :class="{ 'translate-y-0 rotate-45': loadMenuContent }"
-                  class="absolute bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out"></div>
-            <div :class="{ '-rotate-45': loadMenuContent }"
-                  class="absolute bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out"></div>
-          </div>
-        </button>
+        <div class="flex">
+          <button x-show="!showMenu"
+                  x-transition:enter="transition ease-out duration-700"
+                  x-transition:enter-start="opacity-0 transform scale-90"
+                  x-transition:enter-end="opacity-100 transform scale-100"
+                  x-transition:leave="transition ease-in duration-700"
+                  x-transition:leave-start="opacity-100 transform scale-100"
+                  x-transition:leave-end="opacity-0 transform scale-90"
+                  type="button"
+                  class="inline-flex items-center justify-center focus:outline-none group"
+                  aria-expanded="false"
+                  @click="showMenu = !showMenu; setTimeout(() => loadMenuContent = true, 750)">
+            <span class="sr-only">Open menu</span>
+            <div class="flex flex-col items-end justify-between w-8 h-6 overflow-hidden">
+              <div :class="{ 'translate-x-8': showMenu }"
+                  class="bg-concrete h-0.5 w-9/12 transform-gpu transition-all duration-200 ease-in-out group-hover:w-full"></div>
+              <div :class="{ 'translate-x-10': showMenu }"
+                  class=" bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out group-hover:w-full"></div>
+              <div :class="{ 'translate-x-8': showMenu }"
+                  class="bg-concrete h-0.5 w-10/12 transform-gpu translate-x-8 transition-all duration-700 ease-in-out group-hover:w-full"></div>
+            </div>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div  x-show="loadMenuContent"
+    <%#  ---- Menu Background overlay ---- %>
+    <div x-show="loadMenuContent"
+          x-transition.delay.500ms
           x-transition:enter="transition ease-out duration-700"
           x-transition:enter-start="opacity-0 transform translate-y-10"
           x-transition:enter-end="opacity-100 transform translate-y-0"
           x-transition:leave="transition ease-in duration-700"
           x-transition:leave-start="opacity-100 transform translate-y-0"
           x-transition:leave-end="opacity-0 transform translate-y-10"
-          class="flex flex-col md:divide-y-2 md:divide-concrete">
+          class="absolute w-screen h-screen bg-woodsmoke z-4"></div>
 
-      <div class="hidden space-y-4 md:justify-around md:flex pt-9 md:space-y-0 md:pb-20">
-        <div class="flex flex-col px-4 cursor-pointer group">
-          <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
-            <%= link gettext("About"), to: "/about", class: "md:text-3xl font-normal text-white" %>
-          </div>
-          <div class="pt-6">
-            <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
-              <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
-            </p>
-            <div class="flex items-center text-xl text-concrete">
-              <%= gettext("Learn more") %>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
-                     viewBox="0 0 20 20"
-                     fill="currentColor">
-                  <path fill-rule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd" />
-                </svg>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col px-4 cursor-pointer group">
-          <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
-            <%= link gettext("Resume"), to: "/resume", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
-          </div>
-          <div class="pt-6">
-            <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
-              <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
-            </p>
-            <div class="flex items-center text-xl text-concrete">
-              <%= gettext("Learn more") %>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
-                     viewBox="0 0 20 20"
-                     fill="currentColor">
-                  <path fill-rule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd" />
-                </svg>
-              </span>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-col px-4 cursor-pointer group">
-          <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
-            <%= link gettext("Blog"), to: "/blog", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
-          </div>
-          <div class="pt-6">
-            <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
-              <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
-            </p>
-            <div class="flex items-center text-xl text-concrete">
-              <%= gettext("Learn more") %>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
-                     viewBox="0 0 20 20"
-                     fill="currentColor">
-                  <path fill-rule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd" />
-                </svg>
-              </span>
-            </div>
-          </div>
+    <%# ----- Menu ----- %>
+    <div x-show="loadMenuContent"
+          class="absolute top-0 left-0 right-0 p-4 overflow-hidden z-5">
+      <div class="container flex items-center justify-between px-4 pb-5 mx-auto overflow-hidden origin-top border-gray-100 md:justify-start md:space-x-10 transform-gpu">
+        <%#  ---- Logo ---- %>
+        <div x-show="loadMenuContent"
+              x-transition:enter="transition ease-out duration-700"
+              x-transition:enter-start="opacity-0 transform -translate-y-6"
+              x-transition:enter-end="opacity-100 transform translate-y-0"
+              x-transition:leave="transition ease-in duration-700"
+              x-transition:leave-start="opacity-100 transform -translate-y-6"
+              x-transition:leave-end="opacity-0 transform -translate-y-12"
+              class="flex items-center transition-all transform-gpu">
+          <a href="<%= Routes.page_path(@conn, :index) %>">
+            <span class="sr-only"><%= gettext("Njausteve") %></span>
+            <p class="m-0 text-3xl font-bold text-white md:text-4xl"><%= gettext("Njausteve") %></p>
+          </a>
         </div>
 
-        <div class="flex flex-col px-4 cursor-pointer group">
-          <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
-            <%= link gettext("Blog"), to: "/blog", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
-          </div>
-          <div class="pt-6">
-            <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
-              <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
-            </p>
-            <div class="flex items-center text-xl text-concrete">
-              <%= gettext("Learn more") %>
-              <span>
-                <svg xmlns="http://www.w3.org/2000/svg"
-                     class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
-                     viewBox="0 0 20 20"
-                     fill="currentColor">
-                  <path fill-rule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clip-rule="evenodd" />
-                </svg>
-              </span>
+        <nav x-show="loadMenuContent"
+            x-transition:enter="transition ease-out duration-700"
+            x-transition:enter-start="opacity-0 transform translate-x-10"
+            x-transition:enter-end="opacity-100 transform translate-x-0"
+            x-transition:leave="transition ease-in duration-700"
+            x-transition:leave-start="opacity-100 transform translate-x-0"
+            x-transition:leave-end="opacity-0 transform translate-x-10"
+            class="space-x-10 transition-all md:flex md:justify-end md:flex-1 lg:w-0 transform-gpu">
+          <%= if Pow.Plug.current_user(@conn) do %>
+            <%= link gettext("Sign out"), to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "text-xl font-normal text-concrete"%>
+          <% else %>
+            <%=link gettext("Sign in"), to: Routes.pow_session_path(@conn, :new), method: :get, class: "text-xl font-normal text-concrete" %>
+          <% end %>
+        </nav>
+
+        <div class="flex">
+          <button x-show="loadMenuContent"
+                  x-transition:enter="transition ease-out duration-400"
+                  x-transition:enter-start="opacity-0 translate-x-10"
+                  x-transition:enter-end="opacity-100 transform translate-x-0"
+                  x-transition:leave="transition ease-in duration-400"
+                  x-transition:leave-start="opacity-100 transform translate-x-0"
+                  x-transition:leave-end="opacity-0 transform translate-x-10"
+                  @click="loadMenuContent = !loadMenuContent; setTimeout(() => showMenu = !showMenu, 750)"
+                  type="button"
+                  class="inline-flex items-center justify-center focus:outline-none group"
+                  aria-expanded="false">
+            <span class="sr-only">Open menu</span>
+            <div class="relative flex flex-col items-end justify-center w-8 h-8 overflow-hidden">
+              <div :class="{ 'translate-y-0 rotate-45': loadMenuContent }"
+                    class="absolute bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out"></div>
+              <div :class="{ '-rotate-45': loadMenuContent }"
+                    class="absolute bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out"></div>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 
-      <div class="flex flex-col py-5 space-y-4 md:flex md:justify-around md:flex-row md:space-y-0">
-        <div class=""><%= link gettext("About"), to: "/about", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
-        <div class=""><%= link gettext("Blog"), to: "/blog", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
-        <div class=""><%= link gettext("Resume"), to: "/resume", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
+      <div  x-show="loadMenuContent"
+            x-transition:enter="transition ease-out duration-700"
+            x-transition:enter-start="opacity-0 transform translate-y-10"
+            x-transition:enter-end="opacity-100 transform translate-y-0"
+            x-transition:leave="transition ease-in duration-700"
+            x-transition:leave-start="opacity-100 transform translate-y-0"
+            x-transition:leave-end="opacity-0 transform translate-y-10"
+            class="container flex flex-col px-4 mx-auto md:divide-y-2 md:divide-concrete">
+
+        <div class="hidden space-y-4 md:justify-around md:flex pt-9 md:space-y-0 md:pb-20">
+          <div class="flex flex-col px-4 cursor-pointer group">
+            <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
+              <%= link gettext("About"), to: "/about", class: "md:text-3xl font-normal text-white" %>
+            </div>
+            <div class="pt-6">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+                <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
+              </p>
+              <div class="flex items-center text-xl text-concrete">
+                <%= gettext("Learn more") %>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
+                      viewBox="0 0 20 20"
+                      fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col px-4 cursor-pointer group">
+            <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
+              <%= link gettext("Resume"), to: "/resume", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
+            </div>
+            <div class="pt-6">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+                <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
+              </p>
+              <div class="flex items-center text-xl text-concrete">
+                <%= gettext("Learn more") %>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
+                      viewBox="0 0 20 20"
+                      fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col px-4 cursor-pointer group">
+            <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
+              <%= link gettext("Blog"), to: "/blog", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
+            </div>
+            <div class="pt-6">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+                <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
+              </p>
+              <div class="flex items-center text-xl text-concrete">
+                <%= gettext("Learn more") %>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
+                      viewBox="0 0 20 20"
+                      fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col px-4 cursor-pointer group">
+            <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
+              <%= link gettext("Blog"), to: "/blog", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
+            </div>
+            <div class="pt-6">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+                <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
+              </p>
+              <div class="flex items-center text-xl text-concrete">
+                <%= gettext("Learn more") %>
+                <span>
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                      class="hidden w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:block"
+                      viewBox="0 0 20 20"
+                      fill="currentColor">
+                    <path fill-rule="evenodd"
+                          d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                          clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col py-5 space-y-4 md:flex md:justify-around md:flex-row md:space-y-0">
+          <div class=""><%= link gettext("About"), to: "/about", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
+          <div class=""><%= link gettext("Blog"), to: "/blog", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
+          <div class=""><%= link gettext("Resume"), to: "/resume", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
+        </div>
       </div>
     </div>
   </div>
