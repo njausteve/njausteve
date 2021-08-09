@@ -42,7 +42,7 @@ config :njausteve, NjausteveWeb.Endpoint,
 
   https: [
     port: 4001,
-    cipher_suite: :strong,
+    cipher_suite: :strong
   ]
 
 #
