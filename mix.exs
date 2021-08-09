@@ -55,6 +55,9 @@ defmodule Njausteve.MixProject do
       {:hackney, "~> 1.8"},
       {:plug_cowboy, "~> 2.3"},
 
+      # ssl
+      {:site_encrypt, "~> 0.4"},
+
       # Testing libraries
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
