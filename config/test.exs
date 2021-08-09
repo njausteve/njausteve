@@ -16,7 +16,11 @@ config :njausteve, Njausteve.Repo,
 # you can enable the server option below.
 config :njausteve, NjausteveWeb.Endpoint,
   http: [port: 4002],
-  server: false
+  server: false,
+  https: [
+    port: 4001,
+    cipher_suite: :strong
+  ]
 
 # Print only warnings and errors during test
 config :logger, level: :warn
