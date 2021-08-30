@@ -10,7 +10,6 @@ services:
     image: postgres:11.10-alpine
     env_file:
       - docker.env
-    restart: always
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
@@ -18,12 +17,14 @@ services:
     networks:
       - webnet
   app:
-    image: njausteve/njausteve:9d7f707af08e06ed0591759cfc48c84344b2a1e3
+    image: njausteve/njausteve:Jca9sJEDHGIZw6qByATZ73Y8bwBxYnvfxt
     env_file:
       - docker.env
+    volumes:
+      - ./site_encrypt_db:/site_encrypt_db
     ports:
       - "80:4000"
-    restart: always
+      - "443:4001"
     depends_on:
       - db
     deploy:

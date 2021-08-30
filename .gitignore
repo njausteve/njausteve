@@ -42,5 +42,6 @@ npm-debug.log
 # docker environment secrets
 *.env
 
-# tmp folders
+# site_encrypt folders
+certdb
 tmp
