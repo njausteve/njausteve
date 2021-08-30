@@ -11,7 +11,12 @@ import Config
 # before starting your production server.
 config :njausteve, NjausteveWeb.Endpoint,
   url: [host: "njausteve.com", port: 443, scheme: "https"],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  https: [
+    port: 4001,
+    cipher_suite: :strong,
+    transport_options: [socket_opts: [:inet6]]
+  ]
 
 config :sentry,
   dsn: "https://67b7e30a79f241f188a099b75d061862@o543662.ingest.sentry.io/5869754",
@@ -30,14 +35,6 @@ config :logger, level: :info
 #
 # To get SSL working, you will need to add the `https` key
 # to the previous section and set your `:url` port to 443:
-#
-config :njausteve, NjausteveWeb.Endpoint,
-  https: [
-    port: 443,
-    cipher_suite: :strong,
-    transport_options: [socket_opts: [:inet6]]
-  ]
-
 # The `cipher_suite` is set to `:strong` to support only the
 # latest and more secure SSL ciphers. This means old browsers
 # and clients may not be supported. You can set it to
