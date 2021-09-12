@@ -1,0 +1,26 @@
+<div class="container px-4 py-5 pt-16 mx-auto text-center text-white md:pt-20">
+  <div class="flex flex-col items-center">
+    <div class="text-lg font-semibold">
+      <%= gettext("Get in touch") %>
+    </div>
+    <div class="mt-4 text-4xl font-bold">
+      <%= gettext("Let's work together") %>
+    </div>
+    <div class="max-w-screen-sm mt-4 text-base font-normal sm:text-xl text-concrete">
+      <%= gettext("If you have a website or mobile app idea in mind or you need some advice about product development, feel free to contact me. Currently my time books quickly, so the sooner you write, the better it is for both of us.") %>
+    </div>
+  </div>
+  <div class="mt-20 sm:mt-28 sm:flex sm:justify-between">
+    <div class="text-lg font-normal opacity-75 cursor-pointer text-concrete hover:underline">
+      <%= gettext "Copyright © 2018- %{current_year} Njausteve", current_year: DateTime.utc_now.year %>
+    </div>
+    <div class="flex justify-center mt-4 sm:justify-between sm:mt-0">
+      <div class="text-lg font-normal opacity-75 cursor-pointer text-concrete hover:underline">
+        <%= gettext "Terms & Conditions" %>
+      </div>
+      <div class="ml-10 text-lg font-normal opacity-75 cursor-pointer sm:ml-20 text-concrete hover:underline">
+        <%= gettext "Privacy Policy" %>
+      </div>
+    </div>
+  </div>
+</div>
