@@ -1,4 +1,5 @@
-<div class="fixed top-0 w-full h-16 shadow-xl md:h-18 lg:h20 bg-woodsmoke z-4">
+<div id="navbar"
+     class="fixed top-0 w-full h-16 transition-all duration-300 ease-out shadow-xl md:h-18 lg:h20 bg-woodsmoke z-4">
   <div class="relative" x-data="{ showMenu: false, loadMenuContent: false }">
     <div x-show="!showMenu"
           x-transition:enter="transition ease-out duration-700"
@@ -11,9 +12,12 @@
       <div class="container flex items-center justify-between px-4 mx-auto overflow-hidden border-gray-100 md:justify-start md:space-x-10">
         <div :class="{ '-translate-y-12': showMenu }"
             class="flex items-center transition-all duration-700 ease-in-out transform-gpu">
-          <a href="<%= Routes.page_path(@conn, :index) %>">
+          <a role="button"
+             href="<%= Routes.page_path(@conn, :index) %>">
             <span class="sr-only"><%= gettext("Njausteve") %></span>
-            <p class="m-0 text-3xl font-bold text-white md:text-4xl"><%= gettext("Njausteve") %></p>
+            <p class="m-0 text-3xl font-bold text-white md:text-4xl">
+              <%= gettext("Njausteve") %>
+            </p>
           </a>
         </div>
 
@@ -74,7 +78,8 @@
               x-transition:leave-start="opacity-100 transform -translate-y-6"
               x-transition:leave-end="opacity-0 transform -translate-y-12"
               class="flex items-center transition-all transform-gpu">
-          <a href="<%= Routes.page_path(@conn, :index) %>">
+          <a href="<%= Routes.page_path(@conn, :index) %>"
+             role="button">
             <span class="sr-only"><%= gettext("Njausteve") %></span>
             <p class="m-0 text-3xl font-bold text-white md:text-4xl"><%= gettext("Njausteve") %></p>
           </a>
@@ -224,11 +229,32 @@
         </div>
 
         <div class="flex flex-col py-5 space-y-4 md:flex md:justify-around md:flex-row md:space-y-0">
-          <div class=""><%= link gettext("About"), to: "/about", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
-          <div class=""><%= link gettext("Blog"), to: "/blog", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
-          <div class=""><%= link gettext("Resume"), to: "/resume", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300"%></div>
+          <div>
+            <%= link gettext("About"), to: "/about", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button" %>
+          </div>
+          <div>
+            <%= link gettext("Blog"), to: "/blog", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button"%>
+          </div>
+          <div>
+            <%= link gettext("Resume"), to: "/resume", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button"%>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  let prevScrollpos = window.pageYOffset;
+
+  window.onscroll = function() {
+    let currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("navbar").style.top = "0";
+    } else {
+      document.getElementById("navbar").style.top = "-70px";
+    }
+
+    prevScrollpos = currentScrollPos;
+  }
+</script>
