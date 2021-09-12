@@ -21,7 +21,7 @@ services:
     env_file:
       - docker.env
     volumes:
-      - ./site_encrypt_db:/site_encrypt_db
+      - certdata:/site_encrypt_db
     ports:
       - "80:4000"
       - "443:4001"
@@ -36,3 +36,4 @@ services:
 
 volumes:
   pgdata:
+  certdata:
