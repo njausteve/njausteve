@@ -12,7 +12,7 @@ defmodule NjausteveWeb.PageController do
     |> render("index.html")
   end
 
-  defp featured_posts() do
+  defp featured_posts do
     Posts.list_posts(preload: [:author, :tags])
   end
 end
