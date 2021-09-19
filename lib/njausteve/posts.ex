@@ -11,16 +11,27 @@ defmodule Njausteve.Posts do
   @doc """
   Returns the list of posts.
 
+  ## Options
+  * `:status` - Scope results by Post publishing status: `all` and others. (defaults: `all`).
+
   ## Examples
 
       iex> list_posts()
       [%Post{}, ...]
 
   """
-  def list_posts do
+  def list_posts(opts \\ []) do
+    status_opt = Keyword.get(opts, :status, "all")
+    preload_opt = Keyword.get(opts, :preload, [])
+
     Post
+    |> with_status(status_opt)
+    |> preload(^preload_opt)
     |> Repo.all()
   end
+
+  defp with_status(query, status) when status in ["all", "", nil], do: query
+  defp with_status(query, status), do: from(q in query, where: q.status == ^status)
 
   @doc """
   Gets a single post.
