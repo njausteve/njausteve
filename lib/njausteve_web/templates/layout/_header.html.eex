@@ -138,7 +138,7 @@
               <%= link gettext("About"), to: "/about", class: "md:text-3xl font-normal text-white" %>
             </div>
             <div class="pt-6">
-              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer lg:text-xl">
                 <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
               </p>
               <div class="flex items-center text-xl text-concrete">
@@ -161,7 +161,7 @@
               <%= link gettext("Resume"), to: "/resume", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
             </div>
             <div class="pt-6">
-              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer lg:text-xl">
                 <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
               </p>
               <div class="flex items-center text-xl text-concrete">
@@ -184,7 +184,7 @@
               <%= link gettext("Blog"), to: "/blog", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
             </div>
             <div class="pt-6">
-              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer lg:text-xl">
                 <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
               </p>
               <div class="flex items-center text-xl text-concrete">
@@ -208,7 +208,7 @@
               <%= link gettext("Blog"), to: "/blog", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
             </div>
             <div class="pt-6">
-              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer">
+              <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer lg:text-xl">
                 <%= gettext("Lorem, ipsum dolor sit amet consectetur adipisicing elit. Magni, quidem eveniet dicta ipsum illo corporis id aliquid modi est, amet veniam, nobis quasi autem doloribus sunt voluptatibus placeat blanditiis vero?") %>
               </p>
               <div class="flex items-center text-xl text-concrete">
