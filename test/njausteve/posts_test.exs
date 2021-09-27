@@ -50,8 +50,6 @@ defmodule Njausteve.PostsTest do
     end
 
     test "list_posts/1 with preload options returns all posts with assosciations preloaded" do
-      post = post_fixture()
-
       for post <- Posts.list_posts(preload: [:author, :comments, :tags]) do
         assert assoc_loaded?(post.author)
         assert assoc_loaded?(post.comments)
