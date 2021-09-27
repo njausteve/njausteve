@@ -31,15 +31,22 @@ defmodule NjausteveWeb.PageControllerTest do
     post
   end
 
+  test "GET /", %{conn: conn} do
+    conn = get(conn, "/")
+    assert html_response(conn, 200) =~ "Njausteve"
+  end
+
+  test "GET / does not display top featured and other featured articles section if there are no featured posts",
+       %{conn: conn} do
+    conn = get(conn, "/")
+
+    refute html_response(conn, 200) =~ "Featured articles"
+  end
+
   describe "index" do
     setup [:create_posts]
 
-    test "GET /", %{conn: conn} do
-      conn = get(conn, "/")
-      assert html_response(conn, 200) =~ "Njausteve"
-    end
-
-    test "GET / displays top featured and other featured articles ", %{conn: conn, posts: posts} do
+    test "GET / displays top featured and other featured articles", %{conn: conn, posts: posts} do
       conn = get(conn, "/")
 
       assert html_response(conn, 200) =~ "Featured articles"
