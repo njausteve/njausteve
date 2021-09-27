@@ -48,7 +48,7 @@ config :logger, level: :info
 # We also recommend setting `force_ssl` in your endpoint, ensuring
 # no data is ever sent via http, always redirecting to https:
 #
-config :njausteve, NjausteveWeb.Endpoint, force_ssl: [hsts: true]
+config :njausteve, NjausteveWeb.Endpoint, force_ssl: [hsts: false]
 
 # Check `Plug.SSL` for all available options in `force_ssl`.
 
