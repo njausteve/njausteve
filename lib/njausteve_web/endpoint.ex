@@ -65,7 +65,7 @@ defmodule NjausteveWeb.Endpoint do
       # provide `:certbot` instead. Note that in this case certbot needs to be installed on the
       # host machine.
       client: :native,
-      domains: ["njausteve.com", "www.njausteve.com"],
+      domains: ["njausteve.com", "www.njausteve.com", "reports.njausteve.com"],
       emails: ["njaustevedomino@gmail.com"],
 
       # By default the certs will be stored in tmp/site_encrypt_db, which is convenient for
