@@ -17,11 +17,11 @@ services:
     networks:
       - webnet
   app:
-    image: njausteve/njausteve:6400ec57b7ec05032a91cd2392b791b236bc147a
+    image: njausteve/njausteve:6400ec57b7ec05032a91cd2392b791b236bc147ad
     env_file:
       - docker.env
     volumes:
-      - certdata:/tmp/site_encrypt_db
+      - certdata:/opt/app/tmp
     ports:
       - "80:4000"
       - "443:4001"
