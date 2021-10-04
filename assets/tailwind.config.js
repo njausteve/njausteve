@@ -44,6 +44,7 @@ module.exports = {
       colors: {
         woodsmoke: "#0d0e0e",
         concrete: "#f3f3f3",
+        "the-blue": "#1a27c9",
       },
       fontSize: {
         "14xl": "16rem",

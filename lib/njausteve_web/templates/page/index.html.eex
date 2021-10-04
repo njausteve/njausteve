@@ -16,7 +16,7 @@
     <div class="z-50 flex p-5 my-5 text-center lg:w-5/12 md:pt-10 lg:py-34">
       <div class="w-full max-w-lg mx-auto lg:max-w-sm lg:ml-auto">
         <div class="bg-gray-300 rounded-full aspect-w-1 aspect-h-1">
-          <img src="<%= Routes.static_path(@conn, "/images/profile-pic (#{:rand.uniform(7)}).png") %>" alt="njausteve profile picture" />
+          <img src="<%= Routes.static_path(@conn, "/images/profile-pic (#{:rand.uniform(3)}).png") %>" alt="njausteve profile picture" />
         </div>
       </div>
     </div>

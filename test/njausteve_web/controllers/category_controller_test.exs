@@ -7,7 +7,7 @@ defmodule NjausteveWeb.CategoryControllerTest do
 
   setup %{conn: conn} do
     user = %User{email: "test@example.com", role: "admin"}
-    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :my_app)
+    conn = Pow.Plug.assign_current_user(conn, user, otp_app: :njausteve)
 
     {:ok, conn: conn}
   end

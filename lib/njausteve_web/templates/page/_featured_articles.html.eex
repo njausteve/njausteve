@@ -37,7 +37,7 @@
       <div class="mt-8">
         <a href=""
            role="button"
-           class="inline-block py-4 text-base font-medium leading-4 tracking-wider text-white uppercase bg-blue-700 shadow-lg px-11 hover:bg-blue-800">
+           class="inline-block py-4 text-base font-semibold leading-4 tracking-wider text-white uppercase shadow-lg bg-the-blue px-11 hover:bg-blue-800">
           <%= gettext "Read now" %>
         </a>
       </div>

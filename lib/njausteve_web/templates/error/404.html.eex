@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="noindex">
+    <title>Njausteve: Page not found</title>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+    <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head>
+  <body class="bg-woodsmoke">
+    <main role="main">
+      <header>
+        <section>
+          <nav role="navigation">
+            <%= render NjausteveWeb.LayoutView, "_header.html", assigns %>
+          </nav>
+        </section>
+      </header>
+      <div class="flex h-screen md:items-center">
+        <div class="container px-4 pt-16 mx-auto overflow-hidden md:pt-20 lg:py-20 z-1">
+          <div class="flex flex-col items-center md:flex-row-reverse">
+            <div class="md:w-1/2">
+              <div class="max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_uya4kd2o.json" class="w-full h-full" background="transparent"  speed="1" loop autoplay></lottie-player>
+              </div>
+            </div>
+            <div class="mt-5 text-center md:text-left">
+              <div class="flex items-center text-4xl font-bold text-concrete md:text-5xl xl:text-6xl">
+                <%= gettext "You've wandered off too far!!" %>
+              </div>
+              <div class="mt-2 font-mono text-sm font-normal leading-3 tracking-widest text-concrete lg:text-xl"><%= gettext "The page you are trying to access does not exist." %></div>
+
+              <div class="mt-8 text-center md:text-left">
+                <a href="<%= Routes.page_path(@conn, :index) %>"
+                  role="button"
+                  class="inline-block py-4 text-base font-semibold leading-4 tracking-wider text-white uppercase shadow-lg bg-the-blue px-11 hover:bg-blue-800">
+                  <%= gettext "Take me home" %>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
