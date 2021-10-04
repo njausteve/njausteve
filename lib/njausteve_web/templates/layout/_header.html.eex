@@ -1,6 +1,6 @@
 <div id="navbar"
      class="fixed top-0 w-full h-16 transition-all duration-300 ease-out shadow-xl md:h-18 lg:h20 bg-woodsmoke z-4">
-  <div class="relative" x-data="{ showMenu: false, loadMenuContent: false }">
+  <div x-cloak class="relative" x-data="{ showMenu: false, loadMenuContent: false }">
     <div x-show="!showMenu"
           x-transition:enter="transition ease-out duration-700"
           x-transition:enter-start="opacity-0 transform "

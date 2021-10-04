@@ -13,7 +13,7 @@ defmodule NjausteveWeb.EnsureRolePlugTest do
       build_conn()
       |> Plug.Conn.put_private(:plug_session, %{})
       |> Plug.Conn.put_private(:plug_session_fetch, :done)
-      |> Pow.Plug.put_config(otp_app: :my_app)
+      |> Pow.Plug.put_config(otp_app: :njausteve)
       |> fetch_flash()
 
     {:ok, conn: conn}
@@ -32,7 +32,7 @@ defmodule NjausteveWeb.EnsureRolePlugTest do
 
     conn =
       conn
-      |> Pow.Plug.assign_current_user(@user, otp_app: :my_app)
+      |> Pow.Plug.assign_current_user(@user, otp_app: :njausteve)
       |> EnsureRolePlug.call(opts)
 
     assert conn.halted
@@ -44,7 +44,7 @@ defmodule NjausteveWeb.EnsureRolePlugTest do
 
     conn =
       conn
-      |> Pow.Plug.assign_current_user(@user, otp_app: :my_app)
+      |> Pow.Plug.assign_current_user(@user, otp_app: :njausteve)
       |> EnsureRolePlug.call(opts)
 
     refute conn.halted
@@ -55,7 +55,7 @@ defmodule NjausteveWeb.EnsureRolePlugTest do
 
     conn =
       conn
-      |> Pow.Plug.assign_current_user(@admin, otp_app: :my_app)
+      |> Pow.Plug.assign_current_user(@admin, otp_app: :njausteve)
       |> EnsureRolePlug.call(opts)
 
     refute conn.halted
