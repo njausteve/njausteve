@@ -1,0 +1,51 @@
+<div class="flex flex-col-reverse justify-end mt-10 lg:mt-20 lg:flex-row">
+  <div class="mt-8 md:mt-0 lg:w-1/2">
+    <div class="flex justify-between pt-5 md:pt-10">
+      <div class="font-mono text-sm font-normal leading-3 tracking-widest uppercase text-woodsmoke xl:text-lg">
+        <%= gettext "Latest" %>
+      </div>
+    </div>
+    <div class="w-1/4 h-0 mt-2 border border-t md:w-full border-woodsmoke"></div>
+    <div class="mt-6 sm:mt-10">
+      <a href="<%= Routes.blog_path(@conn, :show, @latest_post.slug) %>"
+         class="font-sans text-4xl font-medium leading-10 text-black md:leading-11 md:text-6xl">
+        <%= @latest_post.title %>
+      </a>
+    </div>
+    <%= if @latest_post.author do %>
+    <div class="mt-5 text-base font-semibold text-gray-700 sm:text-xl">
+      <%= gettext "Posted by" %>
+      <span class="text-the-blue"><%= @latest_post.author %></span>
+    </div>
+    <% end %>
+
+    <div class="mt-2 text-xl font-light text-black md:mt-6 sm:text-2xl">
+      <%= @latest_post.summary %>
+    </div>
+
+    <div class="mt-8">
+      <a href="<%= Routes.blog_path(@conn, :show, @latest_post.slug) %>"
+        role="button"
+        class="flex items-center text-2xl group">
+        <span class="transition ease-in-out transform group-hover:text-the-blue duration-900">
+          <%= gettext "Read now" %>
+        </span>
+        <svg xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5 ml-4 transition ease-in-out transform duration-900 group-hover:text-the-blue"
+            viewBox="0 0 20 20"
+            fill="currentColor">
+          <path fill-rule="evenodd"
+                d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+                clip-rule="evenodd" />
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="max-w-2xl lg:w-1/2 md:ml-14">
+    <div class="overflow-hidden bg-gray-300 rounded-lg aspect-w-16 aspect-h-9">
+      <img class="object-cover bg-center bg-no-repeat"
+          src="https://picsum.photos/1600/900"
+          alt="<%= @latest_post.title %>">
+    </div>
+  </div>
+</div>

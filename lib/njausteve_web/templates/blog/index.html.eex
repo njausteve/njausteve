@@ -1,0 +1,33 @@
+<div class="container relative px-4 py-16 mx-auto overflow-hidden md:py-20">
+  <div class="pt-20 md:pt-40">
+    <div class="font-medium tracking-normal text-white text-7xl lg:text-8xl md:font-semibold">
+      <%= gettext "Blog" %>
+    </div>
+    <div class="max-w-3xl mt-6 text-2xl font-light text-white sm:leading-8 md:mt-8 sm:text-3xl">
+      <%= gettext "Check out the latest tricks, tips and happenings in Technology and personal development" %>
+    </div>
+  </div>
+</div>
+<div class="bg-white">
+  <div class="container relative px-4 pb-5 mx-auto overflow-hidden md:pb-8 lg:pb-20">
+    <%# ---- Start: Empty state ---- %>
+    <%= if !@latest_post && @posts == [] do %>
+      <div class="mt-4 font-sans text-4xl font-medium leading-7 md:mt-12 md:text-5xl">
+        <%= gettext "No posts yet" %>
+      </div>
+    <% end %>
+    <%# ---- End: Empty state ---- %>
+
+    <%# ---- Start: Latest post ---- %>
+    <%= if @latest_post do %>
+      <%= render NjausteveWeb.BlogView, "_latest_post.html", assigns %>
+    <% end %>
+    <%# ---- End: Latest post ---- %>
+
+    <%# ---- Start: Posts ---- %>
+    <%= if @posts != [] do %>
+      <%= render NjausteveWeb.BlogView, "_blog_posts.html", assigns %>
+    <% end %>
+    <%# ---- End: Posts ---- %>
+  </div>
+</div>
