@@ -51,7 +51,6 @@
   <div class="mt-28 lg:ml-auto lg:w-11/12 lg:mt-36">
     <div class="grid gap-5 mt-12 md:grid-cols-2 lg:grid-cols-3">
       <%= for {post, index} <- Enum.with_index(@featured_posts) do %>
-        <%# --- TODO: slice to card component %>
         <div class="overflow-hidden rounded-lg shadow-lg sm:flex sm:flex-row md:flex-col group">
           <div class="sm:w-1/2 md:w-full">
             <div class="bg-gray-300 aspect-w-1 aspect-h-1 md:aspect-w-16 md:aspect-h-9">
@@ -65,7 +64,7 @@
                 <%= post.title %>
               </div>
               <!-- <div class="mt-4 text-lg font-normal leading-5 text-gray-700"> -->
-              <div class="text-base font-normal text-gray-700 sm:text-xl">
+              <div class="text-xl font-normal text-gray-700 sm:text-xl">
                 <%= post.summary %>
               </div>
             </div>
