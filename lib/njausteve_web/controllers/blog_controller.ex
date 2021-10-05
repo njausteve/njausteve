@@ -9,7 +9,10 @@ defmodule NjausteveWeb.BlogController do
         [] ->
           conn
           |> assign(:latest_post, [])
+          |> assign(:tags, [])
+          |> assign(:recent_posts, [])
           |> assign(:posts, [])
+          |> assign(:categories, [])
 
         [latest_post | posts] ->
           conn
