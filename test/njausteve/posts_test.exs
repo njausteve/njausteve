@@ -11,7 +11,7 @@ defmodule Njausteve.PostsTest do
       body: "some body",
       meta_title: "some meta_title",
       publishing_status: "pre-production",
-      slug: "some slug",
+      slug: "some-slug",
       summary: "some summary",
       title: "some title",
       views: 42
@@ -20,7 +20,7 @@ defmodule Njausteve.PostsTest do
       body: "some updated body",
       meta_title: "some updated meta_title",
       publishing_status: "pre-production",
-      slug: "some updated slug",
+      slug: "some-updated-slug",
       summary: "some updated summary",
       title: "some updated title",
       views: 43
@@ -59,7 +59,12 @@ defmodule Njausteve.PostsTest do
 
     test "get_post!/1 returns the post with given id" do
       post = post_fixture()
-      assert Posts.get_post!(post.id) == post
+      assert Posts.get_post!(id: post.id) == post
+    end
+
+    test "get_post!/1 returns the post with given slug" do
+      post = post_fixture()
+      assert Posts.get_post!(slug: post.slug) == post
     end
 
     test "create_post/1 with valid data creates a post" do
@@ -67,7 +72,7 @@ defmodule Njausteve.PostsTest do
       assert post.body == "some body"
       assert post.meta_title == "some meta_title"
       assert post.publishing_status == "pre-production"
-      assert post.slug == "some slug"
+      assert post.slug == "some-slug"
       assert post.summary == "some summary"
       assert post.title == "some title"
       assert post.views == 42
@@ -83,7 +88,7 @@ defmodule Njausteve.PostsTest do
       assert post.body == "some updated body"
       assert post.meta_title == "some updated meta_title"
       assert post.publishing_status == "pre-production"
-      assert post.slug == "some updated slug"
+      assert post.slug == "some-updated-slug"
       assert post.summary == "some updated summary"
       assert post.title == "some updated title"
       assert post.views == 43
@@ -92,13 +97,13 @@ defmodule Njausteve.PostsTest do
     test "update_post/2 with invalid data returns error changeset" do
       post = post_fixture()
       assert {:error, %Ecto.Changeset{}} = Posts.update_post(post, @invalid_attrs)
-      assert post == Posts.get_post!(post.id)
+      assert post == Posts.get_post!(id: post.id)
     end
 
     test "delete_post/1 deletes the post" do
       post = post_fixture()
       assert {:ok, %Post{}} = Posts.delete_post(post)
-      assert_raise Ecto.NoResultsError, fn -> Posts.get_post!(post.id) end
+      assert_raise Ecto.NoResultsError, fn -> Posts.get_post!(id: post.id) end
     end
 
     test "change_post/1 returns a post changeset" do

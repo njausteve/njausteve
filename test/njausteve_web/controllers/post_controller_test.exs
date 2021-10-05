@@ -17,7 +17,7 @@ defmodule NjausteveWeb.PostControllerTest do
     body: "some body",
     meta_title: "some meta_title",
     publishing_status: "pre-production",
-    slug: "some slug",
+    slug: "some-slug",
     summary: "some summary",
     title: "some title",
     views: 42
@@ -26,7 +26,7 @@ defmodule NjausteveWeb.PostControllerTest do
     body: "some updated body",
     meta_title: "some updated meta_title",
     publishing_status: "pre-production",
-    slug: "some updated slug",
+    slug: "some-updated-slug",
     summary: "some updated summary",
     title: "some updated title",
     views: 43

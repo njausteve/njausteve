@@ -38,12 +38,12 @@ defmodule NjausteveWeb.PostController do
   end
 
   def show(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
+    post = Posts.get_post!(id: id)
     render(conn, "show.html", post: post)
   end
 
   def edit(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
+    post = Posts.get_post!(id: id)
     publishing_status_options = Posts.publish_status_to_dropdown()
 
     changeset = Posts.change_post(post)
@@ -56,7 +56,7 @@ defmodule NjausteveWeb.PostController do
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
-    post = Posts.get_post!(id)
+    post = Posts.get_post!(id: id)
     publishing_status_options = Posts.publish_status_to_dropdown()
 
     case Posts.update_post(post, post_params) do
@@ -75,7 +75,7 @@ defmodule NjausteveWeb.PostController do
   end
 
   def delete(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
+    post = Posts.get_post!(id: id)
     {:ok, _post} = Posts.delete_post(post)
 
     conn
