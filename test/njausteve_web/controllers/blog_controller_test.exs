@@ -43,6 +43,17 @@ defmodule NjausteveWeb.BlogControllerTest do
     end
   end
 
+  describe "show" do
+    setup [:create_posts]
+
+    test "shows blog when given slug is valid", %{conn: conn, posts: posts} do
+      for post <- posts do
+        conn = get(conn, Routes.blog_path(conn, :show, post.slug))
+        assert html_response(conn, 200) =~ post.title
+      end
+    end
+  end
+
   defp create_posts(_) do
     posts = Enum.map(@create_attrs, &fixture(:post, &1))
 

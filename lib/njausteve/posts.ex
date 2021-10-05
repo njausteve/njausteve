@@ -34,22 +34,32 @@ defmodule Njausteve.Posts do
   defp with_status(query, status), do: from(q in query, where: q.status == ^status)
 
   @doc """
-  Gets a single post.
+  Gets a single post using the id or slug
 
   Raises `Ecto.NoResultsError` if the Post does not exist.
 
   ## Examples
 
-      iex> get_post!(123)
+      iex> get_post!(id: 123)
       %Post{}
 
-      iex> get_post!(456)
+      iex> get_post!(id: 456)
       ** (Ecto.NoResultsError)
 
+      iex> get_post!(slug: "hello-world-post")
+      %Post{}
+
+      iex> get_post!(slug: "non-existent-slug")
+      ** (Ecto.NoResultsError)
   """
-  def get_post!(id) do
+  def get_post!(id: id) do
     Post
     |> Repo.get!(id)
+  end
+
+  def get_post!(slug: slug) do
+    Post
+    |> Repo.get_by!(slug: slug)
   end
 
   @doc """

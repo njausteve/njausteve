@@ -23,6 +23,11 @@ defmodule NjausteveWeb.BlogController do
     render(conn, "index.html")
   end
 
+  def show(conn, %{"slug" => slug}) do
+    post = Posts.get_post!(slug: slug)
+    render(conn, "show.html", post: post)
+  end
+
   defp posts do
     Posts.list_posts(preload: [:categories, :author, :tags])
   end
