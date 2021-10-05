@@ -32,8 +32,6 @@ defmodule NjausteveWeb.BlogController do
     Posts.list_posts(preload: [:categories, :author, :tags])
   end
 
-  defp get(posts, _attr) when posts in [nil, []], do: []
-
   defp get(posts, attr) do
     posts
     |> Enum.reduce([], fn %{^attr => attr}, acc -> attr ++ acc end)
