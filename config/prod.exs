@@ -26,7 +26,8 @@ config :sentry,
   tags: %{
     env: "production"
   },
-  included_environments: [:prod]
+  included_environments: [:prod],
+  release: Njausteve.MixProject.version()
 
 # Do not print debug messages in production
 config :logger, level: :info
