@@ -8,8 +8,11 @@ defmodule NjausteveWeb.BlogController do
       case all_posts = posts() do
         [] ->
           conn
-          |> assign(:latest_post, [])
+          |> assign(:latest_post, nil)
+          |> assign(:tags, [])
+          |> assign(:recent_posts, [])
           |> assign(:posts, [])
+          |> assign(:categories, [])
 
         [latest_post | posts] ->
           conn
