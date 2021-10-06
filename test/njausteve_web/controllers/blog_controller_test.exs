@@ -43,6 +43,12 @@ defmodule NjausteveWeb.BlogControllerTest do
     end
   end
 
+  test "empty state", %{conn: conn} do
+    conn = get(conn, Routes.blog_path(conn, :index))
+
+    assert html_response(conn, 200) =~ "No posts yet"
+  end
+
   describe "show" do
     setup [:create_posts]
 
