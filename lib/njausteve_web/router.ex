@@ -19,6 +19,7 @@ defmodule NjausteveWeb.Router do
 
   pipeline :admin do
     plug NjausteveWeb.EnsureRolePlug, :admin
+    plug :put_layout, {NjausteveWeb.LayoutView, :admin}
   end
 
   pipeline :protected do
