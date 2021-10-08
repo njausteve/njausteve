@@ -3,15 +3,29 @@
     <div class="flex items-center justify-between">
       <a class="text-2xl font-semibold text-white" href="#">
       </a>
-      <button class="flex items-center rounded navbar-burger focus:outline-none">
-        <svg class="block w-8 h-8 p-2 text-white bg-indigo-500 rounded hover:bg-indigo-600" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <title>Mobile menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-        </svg>
-      </button>
+      <div class="flex">
+        <button x-transition:enter="transition ease-out duration-700"
+                x-transition:enter-start="opacity-0 transform scale-90"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-700"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-90"
+                type="button"
+                class="inline-flex items-center justify-center focus:outline-none group"
+                aria-expanded="false"
+                @click="showMenu = !showMenu; setTimeout(() => loadMenuContent = true, 750)">
+          <span class="sr-only">Open menu</span>
+          <div class="flex flex-col items-end justify-between w-8 h-6 overflow-hidden">
+            <div :class="{ 'translate-x-8': showMenu }" class="bg-concrete h-0.5 w-9/12 transform-gpu transition-all duration-200 ease-in-out group-hover:w-full"></div>
+            <div :class="{ 'translate-x-10': showMenu }" class="bg-concrete h-0.5 w-full transform-gpu transition-all duration-500 ease-in-out group-hover:w-full"></div>
+            <div :class="{ 'translate-x-8': showMenu }" class="bg-concrete h-0.5 w-10/12 transform-gpu transition-all duration-700 ease-in-out group-hover:w-full"></div>
+          </div>
+        </button>
+      </div>
     </div>
   </nav>
 </div>
+
 <div class="relative hidden lg:h-screen lg:flex">
   <div class="bg-woodsmoke navbar-backdrop lg:hidden opacity-10"></div>
   <div class="flex flex-col w-3/4 pt-6 pb-8 overflow-y-auto bg-woodsmoke lg:w-80 sm:max-w-xs">

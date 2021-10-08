@@ -49,7 +49,7 @@ defmodule NjausteveWeb.PostControllerTest do
   describe "index" do
     test "lists all posts", %{conn: authed_conn} do
       conn = get(authed_conn, Routes.post_path(authed_conn, :index))
-      assert html_response(conn, 200) =~ "Listing Posts"
+      assert html_response(conn, 200) =~ "Posts"
     end
   end
 
