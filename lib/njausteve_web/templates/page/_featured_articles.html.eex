@@ -90,7 +90,7 @@
     <div class="mt-10">
       <a role="button"
         href=""
-        class="inline-block py-4 text-base font-medium leading-4 tracking-wider text-white uppercase bg-blue-700 shadow-lg px-11 hover:bg-blue-800">
+        class="inline-block py-4 text-base font-medium leading-4 tracking-wider text-white uppercase shadow-lg bg-the-blue px-11 hover:bg-blue-800">
         <%= gettext "blog" %>
       </a>
     </div>

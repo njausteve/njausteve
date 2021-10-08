@@ -1,8 +1,37 @@
 defmodule NjausteveWeb.LayoutViewTest do
+  @moduledoc false
   use NjausteveWeb.ConnCase, async: true
 
-  # When testing helpers, you may want to import Phoenix.HTML and
-  # use functions such as safe_to_string() to convert the helper
-  # result into an HTML string.
-  # import Phoenix.HTML
+  import NjausteveWeb.LayoutView
+
+  setup %{conn: conn} do
+    conn =
+      conn
+      |> Plug.Conn.put_private(:phoenix_endpoint, @endpoint)
+      |> Pow.Plug.put_config(otp_app: :njausteve)
+
+    {:ok, conn: conn}
+  end
+
+  test "returns active classes if path active", %{conn: conn} do
+    path = Routes.post_path(conn, :index)
+
+    classes =
+      conn
+      |> get(path)
+      |> admin_active_class(path)
+
+    assert classes == "bg-the-blue hover:bg-the-blue"
+  end
+
+  test "returns nil if path is not the active", %{conn: conn} do
+    path = Routes.post_path(conn, :index)
+
+    classes =
+      conn
+      |> get(path)
+      |> admin_active_class("/admin")
+
+    assert classes == nil
+  end
 end

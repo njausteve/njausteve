@@ -1,38 +1,115 @@
-<h1>Listing Posts</h1>
+<div class="w-full h-screen bg-gray-100">
+  <div class="flex justify-between px-4 pt-5 mx-auto lg:mt-12 2xl:px-24 md:px-10">
+    <div class="text-4xl font-medium tracking-normal text-woodsmoke md:font-semibold lg:text-5xl"><%= gettext "Posts" %>
+    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Slug</th>
-      <th>Meta title</th>
-      <th>Body</th>
-      <th>Summary</th>
-      <th>Publishing status</th>
-      <th>Views</th>
+    <div>
+      <a role="button"
+        href="<%= Routes.post_path(@conn, :new) %>"
+        class="inline-block px-8 py-3 text-base font-medium leading-4 tracking-wider text-white rounded shadow-lg bg-the-blue hover:bg-blue-800">
+        <%= gettext "New" %>
+      </a>
+    </div>
+  </div>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for post <- @posts do %>
-    <tr>
-      <td><%= post.title %></td>
-      <td><%= post.slug %></td>
-      <td><%= post.meta_title %></td>
-      <td><%= post.body %></td>
-      <td><%= post.summary %></td>
-      <td><%= post.publishing_status %></td>
-      <td><%= post.views %></td>
 
-      <td>
-        <span><%= link "Show", to: Routes.post_path(@conn, :show, post) %></span>
-        <span><%= link "Edit", to: Routes.post_path(@conn, :edit, post) %></span>
-        <span><%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+  <%# ----- Start: Breadcrumps---- %>
+  <div class="px-4 py-3 mt-8 font-bold bg-yellow-300 text-woodsmoke md:px-10 2xl:px-24" aria-label="Breadcrumb">
+    <ol class="inline-flex p-0 list-none">
+      <%= for {path, index} <- Enum.with_index(path_list(@conn.request_path)) do %>
+        <li class="flex items-center">
+          <%= if index > 0  do %>
+          <svg class="w-3 h-3 mx-3 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"/></svg>
+          <% end %>
 
-<span><%= link "New Post", to: Routes.post_path(@conn, :new) %></span>
+          <a href="#">
+            <%= path %>
+          </a>
+        </li>
+      <% end %>
+      </li>
+    </ol>
+  </div>
+  <%# ----- End: Breadcrumps---- %>
+
+  <div class="px-4 pt-5 mx-auto md:pt-14 md:px-10 2xl:px-24">
+    <table class="min-w-full leading-normal border rounded-lg shadow-xl">
+      <thead>
+        <tr>
+          <th class="px-5 py-4 text-sm font-semibold tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b-2">
+            <%= gettext "Title" %>
+          </th>
+          <th class="hidden px-5 py-4 text-sm font-semibold tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b-2 xl:table-cell">
+            <%= gettext "Slug" %>
+          </th>
+          <th class="hidden px-5 py-4 text-sm font-semibold tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b-2 xl:table-cell">
+            <%= gettext "Body" %>
+          </th>
+          <th class="hidden px-5 py-4 text-sm font-semibold tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b-2 lg:table-cell">
+            <%= gettext "Summary" %>
+          </th>
+          <th class="px-5 py-4 text-sm font-semibold tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b-2">
+            <%= gettext "Publishing Status" %>
+          </th>
+          <th class="px-5 py-4 text-sm font-semibold tracking-wider text-left text-gray-700 uppercase bg-gray-100 border-b-2">
+            <%= gettext "Action" %>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= for post <- @posts do %>
+        <tr>
+          <td class="px-5 py-5 bg-white border-b">
+            <span class="text-base font-normal leading-5"><%= post.title %></span>
+          </td>
+          <td class="hidden px-5 py-5 bg-white border-b xl:table-cell">
+            <p class="text-base text-gray-600 whitespace-no-wrap">
+              <%= post.slug %>
+            </p>
+          </td>
+          <td class="hidden px-5 py-5 bg-white border-b xl:table-cell">
+            <p class="text-base font-normal leading-5 text-gray-600 whitespace-no-wrap">
+              <%= truncate(post.body, max_length: 150) %>
+            </p>
+          </td>
+          <td class="hidden px-5 py-5 text-base bg-white border-b lg:table-cell">
+            <p class="text-gray-600 whitespace-no-wrap">
+              <%= truncate(post.summary, max_length: 150) %>
+            </p>
+          </td>
+          <td class="px-5 py-5 text-sm bg-white border-b">
+            <span class="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
+              <span
+                aria-hidden
+                class="absolute inset-0 rounded-full opacity-50"></span>
+              <span class="relative"><%= post.publishing_status %></span>
+            </span>
+          </td>
+          <td class="px-5 py-5 text-sm text-right bg-white border-b">
+            <div x-data="{ dropdownOpen: false }"
+                 @click.away="dropdownOpen = false"
+                 class="relative">
+              <button @click="dropdownOpen = !dropdownOpen"
+                      class="inline-block text-gray-500 hover:text-gray-700 focus:outline-none"
+                      type="button">
+                <svg class="inline-block w-6 h-6 fill-current"
+                    viewBox="0 0 24 24">
+                  <path
+                    d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"
+                  />
+                </svg>
+              </button>
+              <div x-show="dropdownOpen"
+                   class="absolute right-0 z-20 w-24 py-2 mt-2 text-left border divide-y rounded-md shadow-2xl bg-gray-50 divide-gray-50">
+                <%= link "Show", to: Routes.post_path(@conn, :show, post), class: "block px-4 py-1 text-base text-gray-700 capitalize hover:bg-the-blue hover:text-white" %>
+                <%= link "Edit", to: Routes.post_path(@conn, :edit, post), class: "block px-4 py-1 text-base text-gray-700 capitalize hover:bg-the-blue hover:text-white" %>
+                <%= link "Delete", to: Routes.post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "block px-4 py-1 text-base text-gray-700 capitalize hover:bg-the-blue hover:text-white" %>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
