@@ -68,6 +68,7 @@ defmodule NjausteveWeb do
 
       import NjausteveWeb.ErrorHelpers
       import NjausteveWeb.Gettext
+      import NjausteveWeb.MarkdownHelpers
       alias NjausteveWeb.Router.Helpers, as: Routes
     end
   end
