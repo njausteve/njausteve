@@ -54,6 +54,7 @@ defmodule Njausteve.MixProject do
       {:jason, "~> 1.1"},
       {:hackney, "~> 1.8"},
       {:plug_cowboy, "~> 2.3"},
+      {:earmark, "~> 1.3.6"},
 
       # ssl
       {:site_encrypt, "~> 0.4"},
