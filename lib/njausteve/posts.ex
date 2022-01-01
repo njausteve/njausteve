@@ -54,11 +54,13 @@ defmodule Njausteve.Posts do
   """
   def get_post!(id: id) do
     Post
+    |> preload([:categories, :author, :tags])
     |> Repo.get!(id)
   end
 
   def get_post!(slug: slug) do
     Post
+    |> preload([:categories, :author, :tags])
     |> Repo.get_by!(slug: slug)
   end
 
