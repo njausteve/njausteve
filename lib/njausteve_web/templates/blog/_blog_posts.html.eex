@@ -10,7 +10,7 @@
         </div>
         <div class="flex text-gray-600 md:justify-start">
           <div><%= Timex.format!(post.inserted_at, "%B %d %Y", :strftime) %></div>
-          <div class="pl-5"><%= gettext "%{timeInMinutes} min read", timeInMinutes: timeToRead(post) %></div>
+          <div class="pl-5"><%= gettext "%{timeInMinutes} min read", timeInMinutes: time_to_read(post) %></div>
         </div>
         <div class="mt-8">
           <div class="overflow-hidden bg-gray-300 rounded-lg aspect-w-16 aspect-h-9">
@@ -67,7 +67,7 @@
 
             <div class="text-sm text-gray-500">
               <span class="mr-2"><%= Timex.format!(recent_post.inserted_at, "%b %d %Y", :strftime) %></span>
-              <span class="ml-2"><%= gettext "%{timeInMinutes} min read", timeInMinutes: timeToRead(recent_post) %></span>
+              <span class="ml-2"><%= gettext "%{timeInMinutes} min read", timeInMinutes: time_to_read(recent_post) %></span>
             </div>
           </div>
         </div>

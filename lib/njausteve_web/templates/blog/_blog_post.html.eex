@@ -9,7 +9,7 @@
       </div>
       <div class="flex text-gray-600 md:justify-start">
         <div><%= Timex.format!(@post.inserted_at, "%B %d %Y", :strftime) %></div>
-        <div class="pl-5"><%= gettext "%{timeInMinutes} min to read", timeInMinutes: timeToRead(@post) %></div>
+        <div class="pl-5"><%= gettext "%{timeInMinutes} min to read", timeInMinutes: time_to_read(@post) %></div>
       </div>
 
       <article class="mt-6 prose prose-xl max-w-none prose-p:text-black prose-p:text-xl prose-p:font-light prose-p:leading-relaxed sm:prose-p:text-2xl" >

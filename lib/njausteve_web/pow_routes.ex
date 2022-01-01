@@ -1,4 +1,7 @@
 defmodule NjausteveWeb.Pow.Routes do
+  @moduledoc """
+  Routes for the Pow web application.
+  """
   use Pow.Phoenix.Routes
   alias NjausteveWeb.Router.Helpers, as: Routes
 
