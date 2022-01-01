@@ -13,10 +13,9 @@
     <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <div class="lg:flex lg:items-stretch">
-        <div>
-          <%= render NjausteveWeb.LayoutView, "_sidebar.html", assigns %>
-        </div>
+      <main class="lg:flex">
+        <%= render NjausteveWeb.LayoutView, "_sidebar.html", assigns %>
+
         <%= @inner_content %>
       </div>
     </main>

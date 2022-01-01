@@ -12,19 +12,19 @@
   <% end %>
 
   <%= label f, :title, class: "block text-lg font-semibold text-woodsmoke mb-2" %>
-  <%= text_input f, :title, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  <%= text_input f, :title, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 lg:w-2/3 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   <%= error_tag f, :title %>
 
   <%= label f, :slug, class: "block text-lg font-semibold text-woodsmoke mt-5 mb-2" %>
-  <%= text_input f, :slug, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  <%= text_input f, :slug, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 lg:w-2/3 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   <%= error_tag f, :slug %>
 
   <%= label f, :meta_title, class: "block text-lg font-semibold text-woodsmoke mt-5 mb-2" %>
-  <%= text_input f, :meta_title, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  <%= text_input f, :meta_title, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 lg:w-2/3 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   <%= error_tag f, :meta_title %>
 
   <%= label f, :body, class: "block text-lg font-semibold text-woodsmoke mt-5 mb-2" %>
-  <%= textarea f, :body, id: "post-body", class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+  <%= textarea f, :body, id: "post-body", class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 lg:w-2/3 shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   <%= error_tag f, :body %>
 
   <%= label f, :summary, class: "block text-lg font-semibold text-woodsmoke mt-5 mb-2" %>
@@ -39,8 +39,10 @@
   <%= number_input f, :views, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
   <%= error_tag f, :views %>
 
-  <div class="mt-10">
+  <div class="my-10">
     <%= submit "Save", class: "inline-block px-8 py-3 text-base font-medium leading-4 tracking-wider text-white rounded shadow-lg bg-the-blue hover:bg-blue-800", id: "saveButton" %>
+
+    <%= link gettext("Discard"), to: Routes.post_path(@conn, :index), class: "inline-block px-8 py-3 text-base font-medium leading-4 tracking-wider text-white rounded shadow-lg bg-the-blue hover:bg-blue-800 ml-5" %>
   </div>
 <% end %>
 
@@ -52,6 +54,7 @@
     forceSync: true,
     toolbar: [
       "bold",
+      "italic",
       "heading",
       "heading-smaller",
       "heading-bigger",

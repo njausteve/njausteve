@@ -1,4 +1,4 @@
-<div class="w-full h-screen bg-gray-100">
+<div class="w-full bg-gray-100">
   <div class="px-4 pt-5 mx-auto lg:mt-12 2xl:px-24 md:px-10">
     <div class="text-4xl font-medium tracking-normal text-woodsmoke md:font-semibold lg:text-5xl"><%= gettext "New Post" %>
     </div>
@@ -23,9 +23,7 @@
   </div>
   <%# ----- End: Breadcrumps---- %>
 
-  <div class="px-4 pt-5 mx-auto md:pt-14 md:px-10 2xl:px-24">
+  <div class="relative px-4 pt-5 mx-auto md:pt-14 md:px-10 2xl:px-24">
     <%= render "form.html", Map.put(assigns, :action, Routes.post_path(@conn, :create)) %>
-
-    <span><%= link "Back", to: Routes.post_path(@conn, :index) %></span>
   </div>
 </div>
