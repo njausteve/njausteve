@@ -41,12 +41,12 @@ defmodule Njausteve.PostsTest do
         |> Enum.into(@valid_attrs)
         |> Posts.create_post()
 
-      post
+      Posts.get_post!(id: post.id)
     end
 
     test "list_posts/0 returns all posts" do
       post = post_fixture()
-      assert Posts.list_posts() == [post]
+      assert Posts.list_posts(preload: [:categories, :author, :tags]) == [post]
     end
 
     test "list_posts/1 with preload options returns all posts with assosciations preloaded" do
@@ -64,6 +64,7 @@ defmodule Njausteve.PostsTest do
 
     test "get_post!/1 returns the post with given slug" do
       post = post_fixture()
+
       assert Posts.get_post!(slug: post.slug) == post
     end
 

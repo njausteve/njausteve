@@ -9,10 +9,8 @@
           <span class="text-the-blue"><%= post.author %></span>
         </div>
         <div class="flex text-gray-600 md:justify-start">
-        <%#
-          <div class="pr-5">August 27 2019</div>|
-          <div class="pl-5">9 min read</div>
-        %>
+          <div><%= Timex.format!(post.inserted_at, "%B %d %Y", :strftime) %></div>
+          <div class="pl-5"><%= gettext "%{timeInMinutes} min read", timeInMinutes: time_to_read(post) %></div>
         </div>
         <div class="mt-8">
           <div class="overflow-hidden bg-gray-300 rounded-lg aspect-w-16 aspect-h-9">
@@ -66,12 +64,11 @@
             <a href="" class="text-lg font-semibold text-woodsmoke opacity-80 lg:hover-text-yellow-400">
               <%= recent_post.title %>
             </a>
-            <%#  ----
+
             <div class="text-sm text-gray-500">
-              <span class="mr-2">Aug 23, 2019</span>
-              <span class="ml-2">4 min read</span>
+              <span class="mr-2"><%= Timex.format!(recent_post.inserted_at, "%b %d %Y", :strftime) %></span>
+              <span class="ml-2"><%= gettext "%{timeInMinutes} min read", timeInMinutes: time_to_read(recent_post) %></span>
             </div>
-            ----- %>
           </div>
         </div>
       <% end %>

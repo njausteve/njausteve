@@ -28,7 +28,13 @@ defmodule NjausteveWeb.BlogController do
 
   def show(conn, %{"slug" => slug}) do
     post = Posts.get_post!(slug: slug)
-    render(conn, "show.html", post: post)
+
+    conn
+    |> assign(:categories, [])
+    |> assign(:post, post)
+    |> assign(:tags, [])
+    |> assign(:related_posts, [post])
+    |> render("show.html")
   end
 
   defp posts do

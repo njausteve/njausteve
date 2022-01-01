@@ -54,6 +54,7 @@ defmodule Njausteve.MixProject do
       {:jason, "~> 1.1"},
       {:hackney, "~> 1.8"},
       {:plug_cowboy, "~> 2.3"},
+      {:earmark, "~> 1.3.6"},
 
       # ssl
       {:site_encrypt, "~> 0.4"},
@@ -61,6 +62,7 @@ defmodule Njausteve.MixProject do
       # Testing libraries
       {:mix_test_watch, "~> 1.0", only: :dev, runtime: false},
       {:ex_machina, "~> 2.7.0", only: :test},
+
       # code quality
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
@@ -71,7 +73,10 @@ defmodule Njausteve.MixProject do
       {:pow, "~> 1.0.24"},
 
       # Monitoring
-      {:sentry, "~> 8.0"}
+      {:sentry, "~> 8.0"},
+
+      # Other Libraries
+      {:timex, "~> 3.0"}
     ]
   end
 

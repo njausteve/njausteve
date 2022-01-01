@@ -69,7 +69,7 @@
           </td>
           <td class="hidden px-5 py-5 bg-white border-b xl:table-cell">
             <p class="text-base font-normal leading-5 text-gray-600 whitespace-no-wrap">
-              <%= truncate(post.body, max_length: 150) %>
+              <%= truncate(post.body, max_length: 350) %>
             </p>
           </td>
           <td class="hidden px-5 py-5 text-base bg-white border-b lg:table-cell">

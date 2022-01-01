@@ -1,45 +1,46 @@
-<div class="flex items-center justify-center py-5 px-4 sm:px-6 lg:px-8">
-  <div class="max-w-md w-full space-y-8">
+<div class="flex items-center justify-center px-4 py-5 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md space-y-8">
     <div>
-      <img class="mx-auto h-12 w-auto" src="logo" alt="logo">
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <img class="w-auto h-12 mx-auto" src="" alt="logo">
+      <h2 class="mt-6 text-3xl font-extrabold text-center text-white">
         <%= gettext("Sign in to your account") %>
       </h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
+      <p class="mt-2 text-center text-gray-600 text-md">
         Or
         <%= link gettext("Register"), to: Routes.pow_registration_path(@conn, :new), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
       </p>
     </div>
-    <%= form_for @changeset, @action, [as: :user, class: "mt-8 space-y-2"], fn f -> %>
+    <%= form_for @changeset, @action, [as: :user, class: "mt-8 space-y-4"], fn f -> %>
       <%= if @changeset.action do %>
         <div class="alert alert-danger">
           <p>Oops, something went wrong! Please check the errors below.</p>
         </div>
       <% end %>
-
-      <%= label f, gettext("Email address"), class: "text-base font-medium text-gray-500" %>
-      <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mt-1", autocomplete: "email", required: true %>
-      <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
-
-      <%= label f, gettext("password"), class: "text-base font-medium text-gray-500" %>
-      <%= password_input f, :password, class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
-      <%= error_tag f, :password %>
-
+      <div>
+        <%= label f, gettext("Email address"), class: "text-base font-medium text-gray-500" %>
+        <%= text_input f, Pow.Ecto.Schema.user_id_field(@changeset), class: "appearance-none rounded-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-md mt-1", autocomplete: "email", required: true %>
+        <%= error_tag f, Pow.Ecto.Schema.user_id_field(@changeset) %>
+      </div>
+      <div>
+        <%= label f, gettext("password"), class: "text-base font-medium text-gray-500" %>
+        <%= password_input f, :password, class: "appearance-none rounded-none block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 text-md" %>
+        <%= error_tag f, :password %>
+      </div>
+      <div>
       <div class="flex items-center justify-between pt-2">
         <div class="flex items-center">
-          <input id="remember_me" name="remember_me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded cursor-pointer">
-          <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+          <input id="remember_me" name="remember_me" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded cursor-pointer focus:ring-indigo-500">
+          <label for="remember_me" class="block ml-2 text-gray-900 text-md">
             Remember me
           </label>
         </div>
 
-        <div class="text-sm">
+        <div class="text-md">
            <%= link gettext("Forgot your password?"), to: Routes.pow_reset_password_reset_password_path(@conn, :new), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
         </div>
       </div>
-
       <div class="pt-2">
-        <%= submit gettext("Sign in"), class: "relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+        <%= submit gettext("Sign in"), class: "w-full flex justify-center py-2 px-4 border border-transparent text-md font-medium rounded-full text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
       </div>
     <% end %>
   </div>

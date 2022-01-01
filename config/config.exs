@@ -22,6 +22,7 @@ config :njausteve, :pow,
   user: Njausteve.Users.User,
   repo: Njausteve.Repo,
   web_module: NjausteveWeb,
+  routes_backend: NjausteveWeb.Pow.Routes,
   extensions: [PowResetPassword, PowEmailConfirmation],
   cache_store_backend: Pow.Store.Backend.MnesiaCache
 
