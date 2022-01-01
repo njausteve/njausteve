@@ -1,0 +1,80 @@
+ <div class="lg:flex lg:mt-10">
+  <div class="lg:w-8/12 lg:pr-10">
+    <div class="text-black">
+      <div class="mt-5 font-sans text-4xl font-medium leading-10 text-black md:leading-11 md:mt-9 md:text-5xl">
+        <%= @post.title %>
+      </div>
+      <div class="mt-4 text-base font-semibold text-gray-700 sm:text-xl">
+        <span class="text-the-blue"><%= @post.author %></span>
+      </div>
+      <div class="flex text-gray-600 md:justify-start">
+        <div><%= Timex.format!(@post.inserted_at, "%B %d %Y", :strftime) %></div>
+        <div class="pl-5"><%= gettext "%{timeInMinutes} min to read", timeInMinutes: timeToRead(@post) %></div>
+      </div>
+
+      <article class="mt-6 prose prose-xl max-w-none prose-p:text-black prose-p:text-xl prose-p:font-light prose-p:leading-relaxed sm:prose-p:text-2xl" >
+        <%= @post.body |> markdown() %>
+      </article>
+    </div>
+  </div>
+
+  <div class="mt-20 lg:mt-44 lg:w-4/12 lg:pl-12">
+    <%# ---- Start: Categories section ----- %>
+    <%= if @categories != [] do %>
+      <div class="font-mono text-4xl font-medium leading-10 text-black"><%= gettext "Categories" %></div>
+      <div class="pt-8 divide-y divide-gray-200">
+        <%= for category <- @categories do %>
+          <div class="py-4 font-sans text-lg font-normal leading-3 md:text-xl md:py-3"><%= category %></div>
+        <% end %>
+      </div>
+    <% end %>
+    <%# ---- End: Categories section ----- %>
+
+    <%# ---- Start: Recent posts ----- %>
+    <%= if @related_posts != [] do %>
+    <div>
+      <div class="font-mono text-3xl font-medium leading-10 text-black">
+        <%= gettext "Related posts" %>
+      </div>
+      <div class="mt-5">
+      <%= for {related_post, index} <- Enum.with_index(@related_posts) do %>
+        <div class="flex mt-5 lg:cursor-pointer">
+          <div class="w-1/3">
+            <div class="overflow-hidden bg-gray-300 aspect-w-16 aspect-h-9">
+              <img class="object-cover bg-center bg-no-repeat"
+                  src="<%= "https://picsum.photos/id/#{ index + 100 }/600" %>"
+                  alt="<%= related_post.title %>">
+            </div>
+          </div>
+          <div class="flex flex-col justify-between w-2/3 ml-4">
+            <a href="" class="text-lg font-semibold text-woodsmoke opacity-80 lg:hover-text-yellow-400">
+              <%= related_post.title %>
+            </a>
+            <%#  ----
+            <div class="text-sm text-gray-500">
+              <span class="mr-2">Aug 23, 2019</span>
+              <span class="ml-2">4 min read</span>
+            </div>
+            ----- %>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <% end %>
+    <%# ---- End: Recent posts ----- %>
+
+    <%# ---- Start: Tags section ----- %>
+    <%= if @tags != [] do %>
+    <div class="mt-16">
+      <div class="font-mono text-4xl font-medium leading-10 text-black"><%= gettext "Tags" %></div>
+      <ul class="mt-4">
+        <%= for tag <- @tags do %>
+          <li class="inline-block px-3 pb-1 mt-2 font-sans text-lg font-normal bg-yellow-200 rounded-md md:text-xl"><%= tag %></li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+    <%# ---- End: ----- %>
+  </div>
+</div>

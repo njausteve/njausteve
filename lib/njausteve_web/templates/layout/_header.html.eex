@@ -26,7 +26,7 @@
         <nav :class="{ '-translate-y-12': showMenu }"
             class="hidden space-x-10 transition-all duration-700 ease-in-out md:flex md:justify-end md:flex-1 lg:w-0 transform-gpu">
           <%= link gettext("About"), to: "/blog", class: "text-xl font-normal text-concrete"%>
-          <%= link gettext("Resume"), to: "/resume", class: "text-xl font-normal text-concrete"%>
+          <%= link gettext("Resume"), to: "#", class: "text-xl font-normal text-concrete"%>
           <%= link gettext("Blog"), to: "/blog", class: "text-xl font-normal text-concrete"%>
         </nav>
 
@@ -137,7 +137,7 @@
         <div class="hidden space-y-4 md:justify-around md:flex pt-9 md:space-y-0 md:pb-20">
           <div class="flex flex-col px-4 cursor-pointer group">
             <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
-              <%= link gettext("About"), to: "/about", class: "md:text-3xl font-normal text-white" %>
+              <%= link gettext("About"), to: "#", class: "md:text-3xl font-normal text-white" %>
             </div>
             <div class="pt-6">
               <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer lg:text-xl">
@@ -160,7 +160,7 @@
           </div>
           <div class="flex flex-col px-4 cursor-pointer group">
             <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
-              <%= link gettext("Resume"), to: "/resume", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
+              <%= link gettext("Resume"), to: "#", class: "md:text-3xl text-white font-normal hover:border-b-2 hover:border-white" %>
             </div>
             <div class="pt-6">
               <p class="text-base font-light leading-5 text-white group-hover:cursor-pointer lg:text-xl">
@@ -232,13 +232,13 @@
 
         <div class="flex flex-col py-5 space-y-4 md:flex md:justify-around md:flex-row md:space-y-0">
           <div>
-            <%= link gettext("About"), to: "/about", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button" %>
+            <%= link gettext("About"), to: "#", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button" %>
           </div>
           <div>
             <%= link gettext("Blog"), to: "/blog", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button"%>
           </div>
           <div>
-            <%= link gettext("Resume"), to: "/resume", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button"%>
+            <%= link gettext("Resume"), to: "#", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button"%>
           </div>
         </div>
       </div>
@@ -251,6 +251,7 @@
 
   window.onscroll = function() {
     let currentScrollPos = window.pageYOffset;
+
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("navbar").style.top = "0";
     } else {

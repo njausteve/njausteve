@@ -1,9 +1,10 @@
-<div class="bg-concrete">
-  <div class="container relative px-4 py-16 mx-auto overflow-hidden bg-concrete md:py-20">
-    <div class="mt-20 font-sans text-3xl font-medium leading-10 text-black md:text-5xl md:leading-11 md:mt-20"><%= @post.title %></div>
-    <div class="mt-3 text-woodsmoke"><%= @post.inserted_at %></div>
-    <div class="mt-5 text-base font-normal text-woodsmoke sm:text-xl">
-      <%= markdown(@post.body) %>
-    </div>
+<div class="py-10"></div>
+<div class="bg-white">
+  <div class="container relative px-4 pt-10 pb-5 mx-auto overflow-hidden md:pb-8 md:py-10 lg:pb-20">
+    <%# ---- Start: Posts ---- %>
+    <%= if @post != nil do %>
+      <%= render NjausteveWeb.BlogView, "_blog_post.html", assigns %>
+    <% end %>
+    <%# ---- End: Posts ---- %>
   </div>
 </div>
