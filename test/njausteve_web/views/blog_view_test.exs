@@ -1,8 +1,8 @@
 defmodule NjausteveWeb.BlogViewTest do
   use NjausteveWeb.ConnCase, async: true
 
-  alias NjausteveWeb.BlogView
   alias Njausteve.Posts.Post
+  alias NjausteveWeb.BlogView
 
   describe "time_to_read/1" do
     test "returns 0 if a posts body is empty" do
