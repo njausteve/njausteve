@@ -3,7 +3,7 @@ defmodule NjausteveWeb.BlogView do
 
   alias Njausteve.Posts.Post
 
-  def time_to_read(%Post{body: body}) when byte_size(body) > 0 do
+  def time_to_read(%Post{} = %{body: body}) when byte_size(body) > 0 do
     body
     |> String.split(~r{(\\n|[^\w'])+})
     |> Enum.filter(&(&1 != ""))
@@ -11,7 +11,7 @@ defmodule NjausteveWeb.BlogView do
     |> div(200)
   end
 
-  def time_to_read(_) do
+  def time_to_read(_post) do
     0
   end
 end
