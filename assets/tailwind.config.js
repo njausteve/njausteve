@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: [
     "../**/*.html.eex",
@@ -6,8 +8,10 @@ module.exports = {
     "../**/live/**/*.ex",
     "./js/**/*.js"
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
+    // colors: {
+    //   current: 'currentColor',
+    // },
     fontFamily: {
       sans: [
         "Calibre",
@@ -42,6 +46,10 @@ module.exports = {
         "circle-pattern": "url('/images/background-image-circle.svg')",
       }),
       colors: {
+        green: colors.emerald,
+        yellow: colors.amber,
+        purple: colors.violet,
+        gray: colors.neutral,
         woodsmoke: "#0d0e0e",
         concrete: "#f3f3f3",
         "the-blue": "#1a27c9",
@@ -76,16 +84,6 @@ module.exports = {
         9: "9",
       },
     }
-  },
-  variants: {
-    extend: {
-      width: ["group-hover"],
-      borderWidth: ["group-hover", "hover", "focus"],
-      borderColor: ["group-hover", "hover", "focus"],
-      display: ["hover", "focus", "group-hover"],
-      transform: ['group-hover'],
-      translate: ['group-hover'],
-    },
   },
   plugins: [
     require("@tailwindcss/forms"),
