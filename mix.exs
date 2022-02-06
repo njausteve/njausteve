@@ -76,6 +76,7 @@ defmodule Njausteve.MixProject do
       {:sentry, "~> 8.0"},
 
       # Other Libraries
+      {:floki, "~> 0.32.0"},
       {:timex, "~> 3.0"}
     ]
   end
