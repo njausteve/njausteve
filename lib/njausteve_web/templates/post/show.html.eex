@@ -93,7 +93,7 @@
             <dt class="text-base font-medium text-gray-500">
               Body
             </dt>
-            <dd class="mt-1 text-base text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd class="mt-1 text-base text-gray-900 sm:mt-0 sm:col-span-2 prose-code:before:content-none prose-code:after:content-none">
               <%= markdown(@post.body) %>
             </dd>
           </div>

@@ -13,7 +13,7 @@
     <div class="max-w-2xl lg:w-7/12">
       <div class="overflow-hidden bg-gray-300 rounded-lg aspect-w-16 aspect-h-9">
         <img class="object-cover bg-center bg-no-repeat"
-             src="https://picsum.photos/1600/900"
+             src="<%= get_image_src(@top_featured_post.body) %>"
              alt="">
       </div>
     </div>
@@ -69,7 +69,7 @@
               </div>
             </div>
             <div class="duration-300 ease-in-out transform lg:group-hover:-translate-y-1/4">
-              <a href=""
+              <a href="<%= Routes.blog_path(@conn, :show, post.slug) %>"
                 role="button"
                 class="flex items-center p-4 text-base font-normal leading-5 sm:p-5">
                 <%= gettext "Read full article" %>
@@ -89,7 +89,7 @@
     </div>
     <div class="mt-10">
       <a role="button"
-        href=""
+        href="<%= Routes.blog_path(@conn, :index) %>"
         class="inline-block py-4 text-base font-medium leading-4 tracking-wider text-white uppercase shadow-lg bg-the-blue px-11 hover:bg-blue-800">
         <%= gettext "blog" %>
       </a>

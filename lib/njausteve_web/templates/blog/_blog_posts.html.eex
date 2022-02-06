@@ -15,7 +15,7 @@
         <div class="mt-8">
           <div class="overflow-hidden bg-gray-300 rounded-lg aspect-w-16 aspect-h-9">
             <img class="object-cover bg-center bg-no-repeat"
-                  src="https://picsum.photos/1600/900"
+                  src="<%= get_image_src(post.body) %>"
                   alt="<%= post.title %>">
           </div>
         </div>
@@ -23,7 +23,7 @@
           <%= post.summary %>
         </div>
         <div class="mt-8">
-          <a href=""
+          <a href="<%= Routes.blog_path(@conn, :show, post.slug) %>"
             role="button"
             class="inline-block py-4 text-base font-semibold leading-4 tracking-wider text-white uppercase shadow-lg bg-the-blue px-11 hover:bg-blue-800">
             <%= gettext "Read now" %>

@@ -25,7 +25,7 @@
 
         <nav :class="{ '-translate-y-12': showMenu }"
             class="hidden space-x-10 transition-all duration-700 ease-in-out md:flex md:justify-end md:flex-1 lg:w-0 transform-gpu">
-          <%= link gettext("About"), to: "/blog", class: "text-xl font-normal text-concrete"%>
+          <%= link gettext("About"), to: "/#", class: "text-xl font-normal text-concrete"%>
           <%= link gettext("Resume"), to: "#", class: "text-xl font-normal text-concrete"%>
           <%= link gettext("Blog"), to: "/blog", class: "text-xl font-normal text-concrete"%>
         </nav>
@@ -134,7 +134,7 @@
             x-transition:leave-end="opacity-0 transform translate-y-10"
             class="container flex flex-col px-4 mx-auto md:divide-y-2 md:divide-concrete">
 
-        <div class="hidden space-y-4 md:justify-around md:flex pt-9 md:space-y-0 md:pb-20">
+        <div class="hidden space-y-4 md:justify-around md:hidden pt-9 md:space-y-0 md:pb-20">
           <div class="flex flex-col px-4 cursor-pointer group">
             <div class="transition-all duration-700 ease-in-out border-b-2 group-hover:border-white border-woodsmoke">
               <%= link gettext("About"), to: "#", class: "md:text-3xl font-normal text-white" %>
@@ -230,7 +230,7 @@
           </div>
         </div>
 
-        <div class="flex flex-col py-5 space-y-4 md:flex md:justify-around md:flex-row md:space-y-0">
+        <div class="flex flex-col py-5 space-y-4 md:justify-around md:flex-row md:space-y-0 md:hidden">
           <div>
             <%= link gettext("About"), to: "#", class: "text-2xl text-concrete cursor-pointer hover:text-yellow-300", role: "button" %>
           </div>
