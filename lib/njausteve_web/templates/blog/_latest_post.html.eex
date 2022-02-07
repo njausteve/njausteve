@@ -44,7 +44,7 @@
   <div class="max-w-2xl lg:w-1/2 md:ml-14">
     <div class="overflow-hidden bg-gray-300 rounded-lg aspect-w-16 aspect-h-9">
       <img class="object-cover bg-center bg-no-repeat"
-          src="https://picsum.photos/1600/900"
+          src="<%= get_image_src(@latest_post.body) %>"
           alt="<%= @latest_post.title %>">
     </div>
   </div>
