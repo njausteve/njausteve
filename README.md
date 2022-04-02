@@ -1,5 +1,7 @@
 # Njausteve
 
+This project is a personal portfolio website as seen on [my website](https://wwww.njausteve.com). It contains sample work and technical and personal growth content based on my experience.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
@@ -10,6 +12,16 @@ To start your Phoenix server:
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+
+## Tech Stack
+
+**Front End:** Alpinejs, TailwindCSS
+
+**Server:** Elixir, Phoenix elixir, Postgres
+## Authors
+
+- [@njausteve](https://www.github.com/njausteve)
+
 
 ## Learn more
 
