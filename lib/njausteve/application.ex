@@ -18,7 +18,7 @@ defmodule Njausteve.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Njausteve.PubSub},
       # Start the Endpoint (http/https)
-      {SiteEncrypt.Phoenix, NjausteveWeb.Endpoint},
+      NjausteveWeb.Endpoint,
       # Start a worker by calling: Njausteve.Worker.start_link(arg)
       # {Njausteve.Worker, arg}
       # persistent cache store for pow
