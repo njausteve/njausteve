@@ -1,6 +1,6 @@
 # Njausteve
 
-This project is a personal portfolio website as seen on [my website](https://wwww.njausteve.com). It contains sample work and technical and personal growth content based on my experience.
+This project is a personal portfolio website as seen on [my website](https://www.njausteve.com). It contains sample work and technical and personal growth content based on my experience.
 
 To start your Phoenix server:
 
@@ -21,6 +21,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Authors
 
 - [@njausteve](https://www.github.com/njausteve)
+- [Website](https://www.njausteve.com)
 
 
 ## Learn more
