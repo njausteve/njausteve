@@ -21,7 +21,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 ## Authors
 
 - [@njausteve](https://www.github.com/njausteve)
-- [Website](https://www.njausteve.com)
+- [Website](https://njausteve.com)
 
 
 ## Learn more
